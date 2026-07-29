@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dormer helps university students find verified homes and gives landlords one simple dashboard." />
+  <title>Dormer | Student homes, simply found</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#14231c',
+            muted: '#64746a',
+            deep: '#0d3928',
+            green: {
+              DEFAULT: '#1a6b4a',
+              hover: '#0d3928',
+              2: '#2d875f',
+            },
+            mint: '#e6f4ec',
+            cream: '#fbf8f2',
+            paper: '#fffefd',
+            line: '#e3eae4',
+            gold: '#f5bc4d',
+            danger: '#d14f55',
+          },
+          fontFamily: {
+            sans: ['"DM Sans"', 'Arial', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            custom: '0 20px 45px rgba(12,54,35,.11)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Keyframes and essential functional toggles */
+    @keyframes pulse-custom {
+      70% { box-shadow: 0 0 0 7px rgba(148,229,178,0); }
+      100% { box-shadow: 0 0 0 0 rgba(148,229,178,0); }
+    }
+    .pulse-anim {
+      animation: pulse-custom 1.7s infinite;
+    }
+    
+    .slide { display: none; }
+    .slide.active { display: block; animation: fade .35s ease; }
+    @keyframes fade {
+      from { opacity: 0; transform: translateX(14px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Landlord Mode Display Toggle */
+    body.landlord-mode .header,
+    body.landlord-mode main > section:not(#landlords),
+    body.landlord-mode .footer {
+      display: none !important;
+    }
+    body.landlord-mode #landlords {
+      display: block !important;
+      opacity: 1 !important;
+      transform: none !important;
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+    body.landlord-mode #landlords .landlord-layout {
+      grid-template-columns: 1fr;
+    }
+    body.landlord-mode #landlords .landlord-layout > div:first-child {
+      display: none;
+    }
+    body.landlord-mode #landlords .dashboard {
+      width: min(830px, 100%);
+      margin: auto;
+    }
+    body.landlord-mode #landlords::before {
+      display: block;
+      width: min(830px, 100%);
+      margin: 0 auto 18px;
+      color: #0d3928;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      content: "Landlord dashboard";
+    }
+
+    /* FAQ accordion icon rotation */
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question span { transform: rotate(45deg); }
+  </style>
+</head>
+<body class="m-0 text-ink bg-paper font-sans text-base leading-normal overflow-x-hidden">
+
+  <!-- Header / Navigation -->
+  <header class="header sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur-md" id="header">
+    <div class="max-w-[1160px] mx-auto px-6 flex items-center gap-[22px] min-h-[67px] md:min-h-[74px]">
+      <a class="brand inline-flex items-center gap-2.5 text-ink text-xl font-bold tracking-tight" href="#home">
+        <span class="brand-mark grid place-items-center w-9 h-9 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xs text-white bg-green shadow-md text-lg">⌂</span>
+        <span>Dormer</span>
+      </a>
+      
+      <nav class="nav max-md:absolute max-md:top-full max-md:right-0 max-md:left-0 max-md:grid max-md:gap-0.5 max-md:max-h-0 max-md:px-6 max-md:overflow-hidden max-md:bg-paper max-md:opacity-0 max-md:transition-all max-md:duration-250 md:flex md:items-center md:gap-1 md:ml-auto" id="nav" aria-label="Main navigation">
+        <a class="active relative p-2.5 max-md:py-2.5 text-[#55645b] text-sm font-bold hover:text-green [&.active]:text-green after:content-[''] after:absolute after:right-2.5 after:bottom-1 after:left-2.5 after:h-0.5 after:rounded-md after:bg-green after:scale-x-0 hover:after:scale-x-100 [&.active]:after:scale-x-100 after:transition-transform" href="#home">Find a home</a>
+        <a class="relative p-2.5 max-md:py-2.5 text-[#55645b] text-sm font-bold hover:text-green [&.active]:text-green after:content-[''] after:absolute after:right-2.5 after:bottom-1 after:left-2.5 after:h-0.5 after:rounded-md after:bg-green after:scale-x-0 hover:after:scale-x-100 [&.active]:after:scale-x-100 after:transition-transform" href="#homes">Homes</a>
+        <a class="relative p-2.5 max-md:py-2.5 text-[#55645b] text-sm font-bold hover:text-green [&.active]:text-green after:content-[''] after:absolute after:right-2.5 after:bottom-1 after:left-2.5 after:h-0.5 after:rounded-md after:bg-green after:scale-x-0 hover:after:scale-x-100 [&.active]:after:scale-x-100 after:transition-transform" href="#campus">Campus guide</a>
+        <a class="relative p-2.5 max-md:py-2.5 text-[#55645b] text-sm font-bold hover:text-green [&.active]:text-green after:content-[''] after:absolute after:right-2.5 after:bottom-1 after:left-2.5 after:h-0.5 after:rounded-md after:bg-green after:scale-x-0 hover:after:scale-x-100 [&.active]:after:scale-x-100 after:transition-transform" href="#landlords">For landlords</a>
+        <a class="relative p-2.5 max-md:py-2.5 text-[#55645b] text-sm font-bold hover:text-green [&.active]:text-green after:content-[''] after:absolute after:right-2.5 after:bottom-1 after:left-2.5 after:h-0.5 after:rounded-md after:bg-green after:scale-x-0 hover:after:scale-x-100 [&.active]:after:scale-x-100 after:transition-transform" href="#stories">Stories</a>
+      </nav>
+      
+      <div class="header-actions flex gap-2 ml-auto md:ml-2">
+        <button class="btn inline-flex items-center justify-center gap-2 min-h-[45px] px-4 border border-[#bad2c4] rounded-lg text-sm font-bold text-deep bg-white hover:bg-mint hover:-translate-y-0.5 transition-all max-sm:w-[42px] max-sm:p-0 max-sm:text-[0px] max-sm:after:content-['◉'] max-sm:after:text-base" data-open-modal>Sign in</button>
+      </div>
+      
+      <button class="menu md:hidden grid place-items-center w-10 h-10 border border-line rounded-lg bg-white text-ink text-lg cursor-pointer" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- Hero Section -->
+    <section class="hero relative isolate overflow-hidden min-h-[650px] text-white bg-deep bg-[linear-gradient(94deg,rgba(6,39,27,.96)_0%,rgba(10,57,39,.8)_45%,rgba(10,57,39,.16)_100%),url('https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=1900&q=85')] bg-center bg-cover">
+      <div class="max-w-[1160px] mx-auto px-6 py-[61px] md:py-[86px] pb-[66px] md:pb-[90px]">
+        <div class="location-tag inline-flex items-center gap-2 mb-[18px] px-2.5 py-1.5 border border-white/20 rounded-full text-[#e6f5eb] bg-white/10 text-xs font-bold">
+          <i class="pulse pulse-anim w-1.5 h-1.5 rounded-full bg-[#94e5b2]"></i> Built for students at every university
+        </div>
+        
+        <h1 class="max-w-[700px] m-0 font-serif text-[clamp(2.75rem,6vw,5.35rem)] font-semibold leading-[0.98] tracking-tight">
+          Your next <em class="text-[#b9e6ca] italic">place</em> is closer than you think.
+        </h1>
+        
+        <p class="hero-lead max-w-[510px] my-6 md:my-8 text-white/80 text-base md:text-lg">
+          Discover verified rooms, flats and shortlets near any campus—clear prices, real photos, and support from viewing to move-in.
+        </p>
+        
+        <form class="search-box w-full max-w-[765px] p-2 border border-white/20 rounded-2xl bg-white/95 shadow-2xl" id="searchForm">
+          <div class="search-tabs flex gap-1 p-1 pb-2 overflow-x-auto">
+            <button class="search-tab active px-2.5 py-1.5 border-0 rounded-md text-xs font-bold text-[#66776c] bg-transparent [&.active]:text-deep [&.active]:bg-mint cursor-pointer shrink-0" type="button" data-type="Rent">Rent</button>
+            <button class="search-tab px-2.5 py-1.5 border-0 rounded-md text-xs font-bold text-[#66776c] bg-transparent [&.active]:text-deep [&.active]:bg-mint cursor-pointer shrink-0" type="button" data-type="Shortlet">Shortlet</button>
+            <button class="search-tab px-2.5 py-1.5 border-0 rounded-md text-xs font-bold text-[#66776c] bg-transparent [&.active]:text-deep [&.active]:bg-mint cursor-pointer shrink-0" type="button" data-type="Shared home">Shared home</button>
+          </div>
+          
+          <div class="search-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_auto] gap-2">
+            <label class="search-field flex items-center min-w-0 h-[52px] px-3 border border-[#e0e8e2] rounded-lg text-green bg-white sm:col-span-2 lg:col-span-1">
+              <span class="mr-2">⌖</span>
+              <span class="sr-only">Location</span>
+              <input id="searchLocation" list="universityList" placeholder="Select or type your university" autocomplete="off" class="w-full min-w-0 border-0 outline-none text-ink bg-transparent text-sm" />
+              <datalist id="universityList">
+                <option value="Abubakar Tafawa Balewa University, Bauchi"><option value="Ahmadu Bello University, Zaria"><option value="Bayero University, Kano"><option value="Federal University, Dutse"><option value="Federal University, Kashere"><option value="Federal University, Lafia"><option value="Federal University, Lokoja"><option value="Federal University, Otuoke"><option value="Federal University, Oye-Ekiti"><option value="Federal University of Agriculture, Abeokuta"><option value="Federal University of Technology, Akure"><option value="Federal University of Technology, Minna"><option value="Federal University of Technology, Owerri"><option value="National Open University of Nigeria"><option value="Nnamdi Azikiwe University, Awka"><option value="Obafemi Awolowo University, Ile-Ife"><option value="University of Abuja"><option value="University of Benin"><option value="University of Calabar"><option value="University of Ibadan"><option value="University of Ilorin"><option value="University of Jos"><option value="University of Lagos"><option value="University of Maiduguri"><option value="University of Nigeria, Nsukka"><option value="University of Port Harcourt"><option value="University of Uyo"><option value="Usmanu Danfodiyo University, Sokoto"><option value="Ambrose Alli University, Ekpoma"><option value="Abia State University, Uturu"><option value="Adamawa State University, Mubi"><option value="Akwa Ibom State University"><option value="Benue State University, Makurdi"><option value="Delta State University, Abraka"><option value="Ebonyi State University, Abakaliki"><option value="Ekiti State University, Ado Ekiti"><option value="Enugu State University of Science and Technology"><option value="Gombe State University"><option value="Imo State University, Owerri"><option value="Kaduna State University"><option value="Kano University of Science and Technology, Wudil"><option value="Kwara State University, Malete"><option value="Lagos State University, Ojo"><option value="Ladoke Akintola University of Technology, Ogbomoso"><option value="Nasarawa State University, Keffi"><option value="Niger Delta University, Wilberforce Island"><option value="Olabisi Onabanjo University, Ago-Iwoye"><option value="Osun State University, Osogbo"><option value="Rivers State University, Port Harcourt"><option value="Taraba State University, Jalingo"><option value="Afe Babalola University, Ado-Ekiti"><option value="American University of Nigeria, Yola"><option value="Babcock University, Ilishan-Remo"><option value="Baze University, Abuja"><option value="Bells University of Technology, Ota"><option value="Bowen University, Iwo"><option value="Caleb University, Lagos"><option value="Covenant University, Ota"><option value="Igbinedion University, Okada"><option value="Landmark University, Omu-Aran"><option value="Nile University of Nigeria, Abuja"><option value="Pan-Atlantic University, Lagos"><option value="Redeemer University, Ede"><option value="Veritas University, Abuja">
+              </datalist>
+            </label>
+            
+            <label class="search-field flex items-center min-w-0 h-[52px] px-3 border border-[#e0e8e2] rounded-lg text-green bg-white">
+              <span class="mr-2">⌂</span>
+              <span class="sr-only">Home type</span>
+              <select class="w-full min-w-0 border-0 outline-none text-ink bg-transparent text-sm appearance-none cursor-pointer">
+                <option>Any home type</option>
+                <option>Self contain</option>
+                <option>Room &amp; parlour</option>
+                <option>Apartment</option>
+                <option>Shared room</option>
+              </select>
+            </label>
+            
+            <label class="search-field flex items-center min-w-0 h-[52px] px-3 border border-[#e0e8e2] rounded-lg text-green bg-white">
+              <span class="mr-2">₦</span>
+              <span class="sr-only">Budget</span>
+              <select class="w-full min-w-0 border-0 outline-none text-ink bg-transparent text-sm appearance-none cursor-pointer">
+                <option>Any budget</option>
+                <option>Under ₦100k</option>
+                <option>₦100k–₦200k</option>
+                <option>₦200k–₦350k</option>
+              </select>
+            </label>
+            
+            <button class="search-go min-w-[123px] h-[52px] border-0 rounded-lg text-white bg-green font-bold cursor-pointer hover:bg-deep transition-colors" type="submit">Search homes →</button>
+          </div>
+        </form>
+        
+        <div class="quick-links flex flex-wrap gap-2 items-center mt-4 text-white/70 text-xs">
+          <span>Popular searches:</span>
+          <a href="#homes" class="px-2.5 py-1 border border-white/20 rounded-full text-white bg-white/5">Near campus</a>
+          <a href="#homes" class="px-2.5 py-1 border border-white/20 rounded-full text-white bg-white/5">University Road</a>
+          <a href="#homes" class="px-2.5 py-1 border border-white/20 rounded-full text-white bg-white/5">Student Village</a>
+          <a href="#homes" class="px-2.5 py-1 border border-white/20 rounded-full text-white bg-white/5">Shared homes</a>
+        </div>
+        
+        <div class="hero-stats flex gap-3 sm:gap-6 mt-10 md:mt-14">
+          <div class="stat pr-3 sm:pr-6 border-r border-white/20 last:border-0 min-w-0">
+            <strong class="block text-base sm:text-2xl font-bold tracking-tight">4,500+</strong>
+            <span class="text-white/70 text-[10px] sm:text-xs">student homes nationwide</span>
+          </div>
+          <div class="stat pr-3 sm:pr-6 border-r border-white/20 last:border-0 min-w-0">
+            <strong class="block text-base sm:text-2xl font-bold tracking-tight">650+</strong>
+            <span class="text-white/70 text-[10px] sm:text-xs">verified local hosts</span>
+          </div>
+          <div class="stat pr-3 sm:pr-6 border-r border-white/20 last:border-0 min-w-0">
+            <strong class="block text-base sm:text-2xl font-bold tracking-tight">4.8/5</strong>
+            <span class="text-white/70 text-[10px] sm:text-xs">student satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Bar -->
+    <section class="benefits border-b border-line bg-white">
+      <div class="max-w-[1160px] mx-auto px-6 py-5 md:py-6 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
+        <div class="benefit flex items-center justify-start md:justify-center gap-2.5 text-muted text-sm font-semibold">
+          <span class="benefit-icon grid place-items-center w-8 h-8 rounded-full text-green bg-mint shrink-0">✓</span> Every listing checked before it goes live
+        </div>
+        <div class="benefit flex items-center justify-start md:justify-center gap-2.5 text-muted text-sm font-semibold">
+          <span class="benefit-icon grid place-items-center w-8 h-8 rounded-full text-green bg-mint shrink-0">₦</span> Clear prices, no surprise charges
+        </div>
+        <div class="benefit flex items-center justify-start md:justify-center gap-2.5 text-muted text-sm font-semibold">
+          <span class="benefit-icon grid place-items-center w-8 h-8 rounded-full text-green bg-mint shrink-0">♧</span> Support through your move-in
+        </div>
+      </div>
+    </section>
+
+    <!-- Listings Section -->
+    <section class="listings max-w-[1160px] mx-auto px-6 py-[74px] md:py-[110px] reveal" id="homes">
+      <div class="section-top flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-7 md:mb-9">
+        <div>
+          <p class="eyebrow text-green text-xs font-bold tracking-widest uppercase mb-2">Fresh on Dormer</p>
+          <h2 class="heading font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight max-w-[600px]">Homes worth a closer look.</h2>
+          <p class="copy text-muted max-w-[535px] mt-3">New student-friendly spaces near universities, with the details that make choosing easy.</p>
+        </div>
+        <a class="text-link inline-flex items-center gap-1.5 text-green text-sm font-bold hover:text-deep" href="#campus">Explore campus areas →</a>
+      </div>
+      
+      <div class="listing-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="listing overflow-hidden border border-line rounded-2xl bg-white transition-all duration-250 hover:-translate-y-1 hover:shadow-custom group">
+          <div class="listing-img relative h-[218px] overflow-hidden bg-[#dae6de]">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=85" alt="Bright modern studio" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="badge absolute top-3 left-3 px-2 py-1 rounded bg-[#f2f9f4] text-deep text-[11px] font-bold">Verified</span>
+            <button class="save absolute top-3 right-3 grid place-items-center w-8 h-8 border-0 rounded-full text-ink bg-white/95 text-base cursor-pointer [&.saved]:text-danger" aria-label="Save studio near campus">♡</button>
+          </div>
+          <div class="listing-body p-4">
+            <div class="price text-green text-lg font-bold tracking-tight">₦85,000 <small class="text-muted text-xs font-normal">/ year</small></div>
+            <h3 class="font-bold text-ink text-sm my-1 truncate">Private studio with kitchen</h3>
+            <div class="place text-muted text-xs">⌖ 10 mins from campus</div>
+            <div class="meta flex gap-3 mt-3 pt-3 border-t border-[#edf2ee] text-[#536259] text-xs">
+              <span>🛏 1 room</span><span>🛁 1 bath</span><span>⚡ Prepaid</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="listing overflow-hidden border border-line rounded-2xl bg-white transition-all duration-250 hover:-translate-y-1 hover:shadow-custom group">
+          <div class="listing-img relative h-[218px] overflow-hidden bg-[#dae6de]">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85" alt="Comfortable apartment living room" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="badge absolute top-3 left-3 px-2 py-1 rounded bg-[#f2f9f4] text-deep text-[11px] font-bold">New this week</span>
+            <button class="save absolute top-3 right-3 grid place-items-center w-8 h-8 border-0 rounded-full text-ink bg-white/95 text-base cursor-pointer [&.saved]:text-danger" aria-label="Save apartment near university">♡</button>
+          </div>
+          <div class="listing-body p-4">
+            <div class="price text-green text-lg font-bold tracking-tight">₦145,000 <small class="text-muted text-xs font-normal">/ year</small></div>
+            <h3 class="font-bold text-ink text-sm my-1 truncate">Quiet room &amp; parlour, gated compound</h3>
+            <div class="place text-muted text-xs">⌖ University Road</div>
+            <div class="meta flex gap-3 mt-3 pt-3 border-t border-[#edf2ee] text-[#536259] text-xs">
+              <span>🛏 1 room</span><span>🛁 1 bath</span><span>⌁ Water</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="listing overflow-hidden border border-line rounded-2xl bg-white transition-all duration-250 hover:-translate-y-1 hover:shadow-custom group max-sm:hidden">
+          <div class="listing-img relative h-[218px] overflow-hidden bg-[#dae6de]">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=85" alt="Shared apartment bedroom" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <span class="badge absolute top-3 left-3 px-2 py-1 rounded bg-[#f2f9f4] text-deep text-[11px] font-bold">Popular</span>
+            <button class="save absolute top-3 right-3 grid place-items-center w-8 h-8 border-0 rounded-full text-ink bg-white/95 text-base cursor-pointer [&.saved]:text-danger" aria-label="Save shared apartment near campus">♡</button>
+          </div>
+          <div class="listing-body p-4">
+            <div class="price text-green text-lg font-bold tracking-tight">₦65,000 <small class="text-muted text-xs font-normal">/ year</small></div>
+            <h3 class="font-bold text-ink text-sm my-1 truncate">Furnished shared apartment for two</h3>
+            <div class="place text-muted text-xs">⌖ Student Village</div>
+            <div class="meta flex gap-3 mt-3 pt-3 border-t border-[#edf2ee] text-[#536259] text-xs">
+              <span>🛏 Shared</span><span>🛁 2 baths</span><span>⌁ Wi-Fi</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Campus Guide -->
+    <section class="explore py-[70px] md:py-[100px] bg-cream" id="campus">
+      <div class="max-w-[1160px] mx-auto px-6 reveal">
+        <p class="eyebrow text-green text-xs font-bold tracking-widest uppercase mb-2">Campus guide</p>
+        <h2 class="heading font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight max-w-[600px]">Choose a place that works for your life.</h2>
+        <p class="copy text-muted max-w-[535px] mt-3">Explore student-friendly neighbourhoods around universities before you settle in.</p>
+        
+        <div class="area-grid grid grid-cols-2 md:grid-cols-[1.25fr_1fr_1fr] auto-rows-[158px] sm:auto-rows-[185px] md:auto-rows-[210px] gap-3 md:gap-4 mt-9">
+          <a class="area big relative flex items-end overflow-hidden p-3.5 md:p-5 rounded-2xl text-white bg-deep col-span-2 md:col-span-1 md:row-span-2 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[#051e14]/80 after:to-[#051e14]/5 group" href="#homes">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85" alt="Apartment complex" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="relative z-10">
+              <h3 class="font-serif text-2xl md:text-3xl leading-none tracking-tight">Campus living</h3>
+              <p class="mt-1 text-white/80 text-xs">Close to campus · Quiet, practical, connected</p>
+            </div>
+          </a>
+          <a class="area relative flex items-end overflow-hidden p-3.5 md:p-5 rounded-2xl text-white bg-deep after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[#051e14]/80 after:to-[#051e14]/5 group" href="#homes">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=85" alt="Residential home" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="relative z-10">
+              <h3 class="font-serif text-lg md:text-2xl leading-none tracking-tight">University Road</h3>
+              <p class="mt-1 text-white/80 text-xs">Homes near University Road</p>
+            </div>
+          </a>
+          <a class="area relative flex items-end overflow-hidden p-3.5 md:p-5 rounded-2xl text-white bg-deep after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[#051e14]/80 after:to-[#051e14]/5 group" href="#homes">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=85" alt="Contemporary apartment" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="relative z-10">
+              <h3 class="font-serif text-lg md:text-2xl leading-none tracking-tight">Student Village</h3>
+              <p class="mt-1 text-white/80 text-xs">Homes near Student Village</p>
+            </div>
+          </a>
+          <a class="area relative flex items-end overflow-hidden p-3.5 md:p-5 rounded-2xl text-white bg-deep after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-[#051e14]/80 after:to-[#051e14]/5 group col-span-2 md:col-span-1" href="#homes">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=85" alt="Modern shortlet" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="relative z-10">
+              <h3 class="font-serif text-lg md:text-2xl leading-none tracking-tight">City Centre</h3>
+              <p class="mt-1 text-white/80 text-xs">Flexible stays nearby</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Landlord Section -->
+    <section class="landlord max-w-[1160px] mx-auto px-6 py-[74px] md:py-[112px] reveal" id="landlords">
+      <div class="landlord-layout grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-8 lg:gap-[65px] items-center">
+        <div>
+          <p class="eyebrow text-green text-xs font-bold tracking-widest uppercase mb-2">Landlord portal</p>
+          <h2 class="heading font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight">A better way to manage your rentals.</h2>
+          <p class="copy text-muted mt-3">List student-ready homes, respond to real inquiries and keep an eye on everything from one simple dashboard.</p>
+          
+          <div class="checks grid gap-4 mt-7">
+            <div class="check flex gap-3 items-start">
+              <i class="grid place-items-center w-6 h-6 rounded-full text-green bg-mint not-italic text-xs shrink-0 mt-0.5">✓</i>
+              <div>
+                <strong class="block text-sm">Reach student tenants</strong>
+                <span class="block text-xs text-muted mt-0.5">Put your property in front of students searching near any university.</span>
+              </div>
+            </div>
+            <div class="check flex gap-3 items-start">
+              <i class="grid place-items-center w-6 h-6 rounded-full text-green bg-mint not-italic text-xs shrink-0 mt-0.5">✓</i>
+              <div>
+                <strong class="block text-sm">Manage inquiries in one place</strong>
+                <span class="block text-xs text-muted mt-0.5">Know who is interested and respond when it suits you.</span>
+              </div>
+            </div>
+            <div class="check flex gap-3 items-start">
+              <i class="grid place-items-center w-6 h-6 rounded-full text-green bg-mint not-italic text-xs shrink-0 mt-0.5">✓</i>
+              <div>
+                <strong class="block text-sm">See what is working</strong>
+                <span class="block text-xs text-muted mt-0.5">Track views, saved homes and active listings at a glance.</span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-main inline-flex items-center justify-center gap-2 min-h-[45px] px-4 rounded-lg text-sm font-bold text-white bg-green shadow-lg hover:bg-deep hover:-translate-y-0.5 transition-all mt-7" data-open-modal>Open landlord dashboard →</button>
+        </div>
+
+        <div class="dashboard overflow-hidden border border-[#d7e5dc] rounded-2xl bg-white shadow-custom max-md:order-2" aria-label="Landlord dashboard preview">
+          <div class="dash-top flex items-center gap-1.5 p-3 md:px-4 border-b border-line bg-[#f8fbf9]">
+            <i class="dash-dot w-2 h-2 rounded-full bg-[#d7e1db]"></i>
+            <i class="dash-dot w-2 h-2 rounded-full bg-[#d7e1db]"></i>
+            <i class="dash-dot w-2 h-2 rounded-full bg-[#d7e1db]"></i>
+            <span class="dash-title ml-1.5 text-[#597067] text-xs font-bold">Dormer landlord dashboard</span>
+            <span class="dash-user ml-auto flex gap-1.5 items-center text-muted text-[11px]">
+              <span class="dash-avatar grid place-items-center w-6 h-6 rounded-full text-[#7d4930] bg-[#f2d2bf] text-[10px] font-bold">AU</span>
+              Abubakar
+            </span>
+          </div>
+          
+          <div class="dash-content grid grid-cols-[93px_1fr] sm:grid-cols-[125px_1fr] min-h-[306px] md:min-h-[340px]">
+            <aside class="dash-side p-2 md:p-3 border-r border-line bg-[#fbfdfb]">
+              <a class="active block my-1 p-1.5 md:p-2 rounded text-[#728078] text-[10px] md:text-xs font-semibold cursor-pointer [&.active]:text-green [&.active]:bg-mint" data-dash="Overview">▦ Overview</a>
+              <a class="block my-1 p-1.5 md:p-2 rounded text-[#728078] text-[10px] md:text-xs font-semibold cursor-pointer [&.active]:text-green [&.active]:bg-mint" data-dash="Listings">⌂ Listings</a>
+              <a class="block my-1 p-1.5 md:p-2 rounded text-[#728078] text-[10px] md:text-xs font-semibold cursor-pointer [&.active]:text-green [&.active]:bg-mint" data-dash="Inquiries">◌ Inquiries</a>
+              <a class="block my-1 p-1.5 md:p-2 rounded text-[#728078] text-[10px] md:text-xs font-semibold cursor-pointer [&.active]:text-green [&.active]:bg-mint" data-dash="Payments">₦ Payments</a>
+            </aside>
+            
+            <div class="dash-main p-3.5 md:p-5">
+              <h3 id="dashHeading" class="m-0 text-base font-bold">Good afternoon, Abubakar</h3>
+              <p id="dashSub" class="mt-0.5 mb-3.5 text-muted text-xs">Here is how your homes are performing this week.</p>
+              
+              <div class="dash-cards grid grid-cols-3 gap-1.5 md:gap-2">
+                <div class="dash-card p-2 md:p-3 border border-line rounded-lg">
+                  <span class="block text-muted text-[10px]">Active listings</span>
+                  <strong id="dashOne" class="block mt-1 text-sm md:text-base font-bold tracking-tight">03</strong>
+                  <span class="up text-green text-[10px] block">+1 this month</span>
+                </div>
+                <div class="dash-card p-2 md:p-3 border border-line rounded-lg">
+                  <span class="block text-muted text-[10px]">New inquiries</span>
+                  <strong id="dashTwo" class="block mt-1 text-sm md:text-base font-bold tracking-tight">12</strong>
+                  <span class="up text-green text-[10px] block">+25% this week</span>
+                </div>
+                <div class="dash-card p-2 md:p-3 border border-line rounded-lg">
+                  <span class="block text-muted text-[10px]">Listing views</span>
+                  <strong id="dashThree" class="block mt-1 text-sm md:text-base font-bold tracking-tight">428</strong>
+                  <span class="up text-green text-[10px] block">+14% this week</span>
+                </div>
+              </div>
+              
+              <div class="dash-list mt-3.5 border border-line rounded-lg overflow-hidden" id="dashList">
+                <div class="dash-row grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_auto_auto] gap-2.5 items-center p-2.5 border-b border-line text-xs last:border-0">
+                  <div>
+                    <strong class="block text-xs font-bold">Studio apartment, Campus View</strong>
+                    <span class="text-muted text-[11px]">Last updated today</span>
+                  </div>
+                  <b class="status px-1.5 py-0.5 rounded text-green bg-mint text-[10px] font-bold">Live</b>
+                  <button class="hidden sm:inline-block px-1.5 py-1 border-0 rounded text-green bg-[#f2f7f4] text-[10px] font-bold cursor-pointer">View</button>
+                </div>
+                <div class="dash-row grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_auto_auto] gap-2.5 items-center p-2.5 border-b border-line text-xs last:border-0">
+                  <div>
+                    <strong class="block text-xs font-bold">2-bed flat, University Road</strong>
+                    <span class="text-muted text-[11px]">4 new inquiries</span>
+                  </div>
+                  <b class="status px-1.5 py-0.5 rounded text-green bg-mint text-[10px] font-bold">Live</b>
+                  <button class="hidden sm:inline-block px-1.5 py-1 border-0 rounded text-green bg-[#f2f7f4] text-[10px] font-bold cursor-pointer">View</button>
+                </div>
+                <div class="dash-row grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_auto_auto] gap-2.5 items-center p-2.5 border-b border-line text-xs last:border-0">
+                  <div>
+                    <strong class="block text-xs font-bold">Shared home, Student Village</strong>
+                    <span class="text-muted text-[11px]">Last updated yesterday</span>
+                  </div>
+                  <b class="status px-1.5 py-0.5 rounded text-green bg-mint text-[10px] font-bold">Live</b>
+                  <button class="hidden sm:inline-block px-1.5 py-1 border-0 rounded text-green bg-[#f2f7f4] text-[10px] font-bold cursor-pointer">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Stories Section -->
+    <section class="stories py-[70px] md:py-[104px] text-white bg-deep" id="stories">
+      <div class="max-w-[1160px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-[0.72fr_1.28fr] gap-8 lg:gap-[65px] items-center reveal">
+        <div>
+          <p class="eyebrow text-[#9cd5b4] text-xs font-bold tracking-widest uppercase mb-2">Student stories</p>
+          <h2 class="heading font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight text-white">Real moves. Real relief.</h2>
+          <p class="copy text-white/70 mt-3">A few students who found a place with Dormer.</p>
+        </div>
+        
+        <div class="testimonial relative min-h-[260px] md:min-h-[280px] p-6 md:p-11 border border-white/15 rounded-2xl bg-white/5" id="testimonial">
+          <span class="quote absolute top-4 right-7 text-[#afe5c4]/20 font-serif text-7xl md:text-8xl leading-none">“</span>
+          
+          <article class="slide active">
+            <p class="relative z-10 max-w-[610px] m-0 font-serif text-lg md:text-2xl leading-relaxed tracking-tight">“I found a clean self-contained room close to campus in two days. The photos and price were exactly right.”</p>
+            <div class="student flex items-center gap-2.5 mt-6">
+              <span class="student-avatar grid place-items-center w-9 h-9 rounded-full text-[#81513a] bg-[#f0d1bf] text-xs font-bold">AM</span>
+              <div>
+                <strong class="block text-xs font-bold">Aisha M.</strong>
+                <span class="block text-white/60 text-xs">300 Level, University student</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide">
+            <p class="relative z-10 max-w-[610px] m-0 font-serif text-lg md:text-2xl leading-relaxed tracking-tight">“Seeing verified listings saved me a lot of stress. I was able to arrange a viewing before travelling to campus.”</p>
+            <div class="student flex items-center gap-2.5 mt-6">
+              <span class="student-avatar grid place-items-center w-9 h-9 rounded-full text-[#81513a] bg-[#f0d1bf] text-xs font-bold">IB</span>
+              <div>
+                <strong class="block text-xs font-bold">Ibrahim B.</strong>
+                <span class="block text-white/60 text-xs">200 Level, University student</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide">
+            <p class="relative z-10 max-w-[610px] m-0 font-serif text-lg md:text-2xl leading-relaxed tracking-tight">“My friend and I found a shared apartment within our budget, with water and Wi-Fi already sorted.”</p>
+            <div class="student flex items-center gap-2.5 mt-6">
+              <span class="student-avatar grid place-items-center w-9 h-9 rounded-full text-[#81513a] bg-[#f0d1bf] text-xs font-bold">FS</span>
+              <div>
+                <strong class="block text-xs font-bold">Fatima S.</strong>
+                <span class="block text-white/60 text-xs">400 Level, University student</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide">
+            <p class="relative z-10 max-w-[610px] m-0 font-serif text-lg md:text-2xl leading-relaxed tracking-tight">“Dormer made the whole process feel less risky. The landlord replied quickly and the place matched the listing.”</p>
+            <div class="student flex items-center gap-2.5 mt-6">
+              <span class="student-avatar grid place-items-center w-9 h-9 rounded-full text-[#81513a] bg-[#f0d1bf] text-xs font-bold">JC</span>
+              <div>
+                <strong class="block text-xs font-bold">John C.</strong>
+                <span class="block text-white/60 text-xs">100 Level, University student</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide">
+            <p class="relative z-10 max-w-[610px] m-0 font-serif text-lg md:text-2xl leading-relaxed tracking-tight">“I needed somewhere temporary before the semester began. The shortlet filter helped me find exactly that.”</p>
+            <div class="student flex items-center gap-2.5 mt-6">
+              <span class="student-avatar grid place-items-center w-9 h-9 rounded-full text-[#81513a] bg-[#f0d1bf] text-xs font-bold">RH</span>
+              <div>
+                <strong class="block text-xs font-bold">Rahma H.</strong>
+                <span class="block text-white/60 text-xs">Final Year, University student</span>
+              </div>
+            </div>
+          </article>
+
+          <div class="slider-bar flex items-center justify-between mt-6">
+            <div class="dots flex gap-1.5" id="dots"></div>
+            <div class="slider-buttons flex gap-1.5">
+              <button id="prev" class="grid place-items-center w-8 h-8 border border-white/20 rounded-full text-white bg-transparent hover:bg-white/10 cursor-pointer" aria-label="Previous story">←</button>
+              <button id="next" class="grid place-items-center w-8 h-8 border border-white/20 rounded-full text-white bg-transparent hover:bg-white/10 cursor-pointer" aria-label="Next story">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq max-w-[1160px] mx-auto px-6 py-[74px] md:py-[105px] reveal">
+      <div class="faq-layout grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-8 lg:gap-[60px]">
+        <div>
+          <p class="eyebrow text-green text-xs font-bold tracking-widest uppercase mb-2">Need to know</p>
+          <h2 class="heading font-serif text-3xl md:text-5xl font-normal leading-tight tracking-tight">A few helpful answers.</h2>
+          <p class="copy text-muted mt-3">Everything you need to get started with Dormer at any university.</p>
+        </div>
+        
+        <div class="faq-items grid gap-2.5">
+          <article class="faq-item open border border-line rounded-xl bg-white">
+            <button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">
+              Can Dormer be used at any university?<span class="text-green text-base transition-transform duration-200">+</span>
+            </button>
+            <div class="faq-answer hidden px-4 pb-4 text-muted text-xs">
+              Yes. Dormer is designed for student housing near universities, polytechnics, and colleges.
+            </div>
+          </article>
+          
+          <article class="faq-item border border-line rounded-xl bg-white">
+            <button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">
+              How do you verify a property?<span class="text-green text-base transition-transform duration-200">+</span>
+            </button>
+            <div class="faq-answer hidden px-4 pb-4 text-muted text-xs">
+              We review each listing’s details, photographs and contact information before marking it as verified.
+            </div>
+          </article>
+          
+          <article class="faq-item border border-line rounded-xl bg-white">
+            <button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">
+              Can landlords list more than one property?<span class="text-green text-base transition-transform duration-200">+</span>
+            </button>
+            <div class="faq-answer hidden px-4 pb-4 text-muted text-xs">
+              Yes. The landlord dashboard is designed to make it easy to manage multiple student-friendly homes.
+            </div>
+          </article>
+          
+          <article class="faq-item border border-line rounded-xl bg-white">
+            <button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">
+              Is it free for students to search?<span class="text-green text-base transition-transform duration-200">+</span>
+            </button>
+            <div class="faq-answer hidden px-4 pb-4 text-muted text-xs">
+              Yes. Students can browse listings, save homes and send inquiries without paying to search.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Host CTA Section -->
+    <section class="host-cta py-12 md:py-[70px] bg-mint">
+      <div class="max-w-[1160px] mx-auto px-6">
+        <div class="host-box flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-7 md:p-12 rounded-3xl text-white bg-[linear-gradient(105deg,#0d3928,#2f7957)] shadow-custom">
+          <div>
+            <h2 class="font-serif text-2xl md:text-4xl leading-tight tracking-tight max-w-[560px]">Have a student-friendly home near a university?</h2>
+            <p class="mt-2.5 text-white/75 text-sm">List it with Dormer and meet tenants who are ready to move.</p>
+          </div>
+          <button class="btn btn-white inline-flex items-center justify-center gap-2 min-h-[45px] px-4 rounded-lg text-sm font-bold text-deep bg-white hover:bg-mint hover:-translate-y-0.5 transition-all max-md:mt-5" data-open-modal>List your property →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer pt-[61px] pb-6 text-[#b7c9be] bg-[#0b291c]">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="footer-grid grid grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-8 pb-11">
+        <div class="col-span-2 md:col-span-1">
+          <a class="brand inline-flex items-center gap-2.5 text-white text-xl font-bold tracking-tight" href="#home">
+            <span class="brand-mark grid place-items-center w-9 h-9 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xs text-white bg-green text-lg">⌂</span>
+            <span>Dormer</span>
+          </a>
+          <p class="footer-copy max-w-[245px] mt-3 text-[#a4b8ab] text-xs">Student homes, without the stress. Built for university students everywhere.</p>
+        </div>
+        <div>
+          <h3 class="mt-1 mb-3 text-white text-xs font-bold uppercase tracking-wider">Explore</h3>
+          <a href="#homes" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Find a home</a>
+          <a href="#campus" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Campus guide</a>
+          <a href="#stories" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Student stories</a>
+        </div>
+        <div>
+          <h3 class="mt-1 mb-3 text-white text-xs font-bold uppercase tracking-wider">For landlords</h3>
+          <a href="#landlords" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Dashboard</a>
+          <a href="#landlords" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">List a property</a>
+          <a href="#landlords" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Landlord support</a>
+        </div>
+        <div>
+          <h3 class="mt-1 mb-3 text-white text-xs font-bold uppercase tracking-wider">Dormer</h3>
+          <a href="#faq" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Help centre</a>
+          <a href="#faq" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">Safety</a>
+          <a href="#home" class="block my-2 text-[#b7c9be] text-xs hover:text-white transition-colors">About us</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom flex flex-col sm:flex-row justify-between gap-2.5 pt-5 border-t border-white/15 text-[#8fa698] text-xs">
+        <span>© 2026 Dormer. Made for university students everywhere.</span>
+        <span>Privacy · Terms · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div class="modal fixed z-50 inset-0 hidden grid place-items-center p-5 bg-[#041911]/60 backdrop-blur-sm [&.show]:grid" id="signinModal" aria-hidden="true">
+    <div class="modal-box relative w-full max-w-[430px] p-7 rounded-2xl bg-white shadow-2xl animate-pop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-modal absolute top-3 right-3 grid place-items-center w-8 h-8 border-0 rounded-full text-muted bg-[#f1f5f2] text-lg cursor-pointer" id="closeModal" aria-label="Close sign in">×</button>
+      <h2 id="modalTitle" class="m-0 font-serif text-3xl tracking-tight">Welcome to Dormer</h2>
+      <p class="mt-1.5 mb-5 text-muted text-sm">Choose how you want to continue.</p>
+      
+      <button class="role-option flex items-center gap-3.5 w-full my-2.5 p-3.5 border border-line rounded-xl text-ink bg-white text-left cursor-pointer hover:border-[#8bbba2] hover:bg-[#f7fbf8] transition-colors" data-role="Student">
+        <i class="role-icon grid place-items-center shrink-0 w-10 h-10 rounded-xl text-green bg-mint not-italic">🎓</i>
+        <span>
+          <strong class="block text-sm">Continue as a student</strong>
+          <span class="block mt-0.5 text-muted text-xs">Search, save and inquire about homes.</span>
+        </span>
+      </button>
+
+      <button class="role-option flex items-center gap-3.5 w-full my-2.5 p-3.5 border border-line rounded-xl text-ink bg-white text-left cursor-pointer hover:border-[#8bbba2] hover:bg-[#f7fbf8] transition-colors" data-role="Landlord">
+        <i class="role-icon grid place-items-center shrink-0 w-10 h-10 rounded-xl text-green bg-mint not-italic">⌂</i>
+        <span>
+          <strong class="block text-sm">Continue as a landlord</strong>
+          <span class="block mt-0.5 text-muted text-xs">List homes and manage your dashboard.</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="modal fixed z-50 inset-0 hidden grid place-items-center p-5 bg-[#041911]/60 backdrop-blur-sm [&.show]:grid" id="registrationModal" aria-hidden="true">
+    <div class="modal-box relative w-full max-w-[430px] p-7 rounded-2xl bg-white shadow-2xl animate-pop" role="dialog" aria-modal="true" aria-labelledby="registrationTitle">
+      <button class="close-modal absolute top-3 right-3 grid place-items-center w-8 h-8 border-0 rounded-full text-muted bg-[#f1f5f2] text-lg cursor-pointer" id="closeRegistration" aria-label="Close registration">×</button>
+      <h2 id="registrationTitle" class="m-0 font-serif text-3xl tracking-tight">Create your account</h2>
+      <p id="registrationCopy" class="mt-1.5 mb-5 text-muted text-sm">Register to start using Dormer.</p>
+      
+      <form class="registration-form grid gap-3" id="registrationForm">
+        <label class="grid gap-1 text-ink text-xs font-bold">
+          Full name
+          <input id="accountName" required placeholder="Your full name" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+        </label>
+        
+        <label class="grid gap-1 text-ink text-xs font-bold">
+          Email address
+          <input type="email" required placeholder="you@example.com" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+        </label>
+        
+        <label class="grid gap-1 text-ink text-xs font-bold">
+          Phone number
+          <input type="tel" required placeholder="0800 000 0000" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+        </label>
+        
+        <div class="role-fields hidden [&.show]:grid gap-3" id="studentFields">
+          <label class="grid gap-1 text-ink text-xs font-bold">
+            Your university
+            <input id="studentUniversity" list="universityList" placeholder="Select or type your university" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+          </label>
+          <label class="grid gap-1 text-ink text-xs font-bold">
+            Student ID or admission number
+            <input id="studentId" placeholder="For student verification" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+          </label>
+          <small class="block text-muted text-xs -mt-1 mb-1">We use this only to verify that you are a student.</small>
+        </div>
+        
+        <div class="role-fields hidden [&.show]:grid gap-3" id="landlordFields">
+          <div class="kyc-note p-2.5 rounded-lg text-[#496456] bg-mint text-xs">
+            KYC verification protects students and landlords. Your documents are reviewed securely before listings go live.
+          </div>
+          <label class="grid gap-1 text-ink text-xs font-bold">
+            Government-issued ID number
+            <input id="landlordKyc" placeholder="NIN, voter card, or driver licence" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+          </label>
+          <label class="grid gap-1 text-ink text-xs font-bold">
+            Property address
+            <input id="propertyAddress" placeholder="Address of your first listing" class="w-full h-11 px-3 border border-line rounded-lg outline-none text-ink text-sm focus:border-[#70a68a] focus:ring-2 focus:ring-green/10" />
+          </label>
+          <label class="check-kyc flex gap-2 items-start text-muted text-xs font-medium">
+            <input id="kycConsent" type="checkbox" class="w-4 h-4 mt-0.5" />
+            I confirm that my information is correct and agree to the KYC review.
+          </label>
+        </div>
+        
+        <button class="btn btn-main inline-flex items-center justify-center gap-2 min-h-[45px] px-4 rounded-lg text-sm font-bold text-white bg-green shadow-lg hover:bg-deep transition-all mt-2" type="submit" id="registrationSubmit">Create account →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast fixed z-50 right-5 bottom-5 px-4 py-3 rounded-xl text-white bg-deep shadow-xl text-sm opacity-0 translate-y-20 transition-all duration-250 [&.show]:opacity-100 [&.show]:translate-y-0" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- JavaScript Behavior -->
+  <script>
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+    
+    const header = $('#header'), menu = $('#menu'), modal = $('#signinModal'), toast = $('#toast');
+    let toastTimer, searchType = 'Rent';
+
+    const showToast = msg => {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    };
+
+    // Navigation Menu Toggle
+    menu.onclick = () => {
+      const open = header.classList.toggle('open');
+      const nav = $('#nav');
+      if (open) {
+        nav.classList.remove('max-md:max-h-0', 'max-md:opacity-0');
+        nav.classList.add('max-md:max-h-[300px]', 'max-md:pt-2.5', 'max-md:pb-4', 'max-md:border-b', 'max-md:border-line', 'max-md:opacity-100', 'max-md:shadow-custom');
+      } else {
+        nav.classList.add('max-md:max-h-0', 'max-md:opacity-0');
+        nav.classList.remove('max-md:max-h-[300px]', 'max-md:pt-2.5', 'max-md:pb-4', 'max-md:border-b', 'max-md:border-line', 'max-md:opacity-100', 'max-md:shadow-custom');
+      }
+      menu.textContent = open ? '×' : '☰';
+      menu.setAttribute('aria-expanded', open);
+    };
+
+    $$('.nav a').forEach(a => a.onclick = () => {
+      header.classList.remove('open');
+      const nav = $('#nav');
+      nav.classList.add('max-md:max-h-0', 'max-md:opacity-0');
+      nav.classList.remove('max-md:max-h-[300px]', 'max-md:pt-2.5', 'max-md:pb-4', 'max-md:border-b', 'max-md:border-line', 'max-md:opacity-100', 'max-md:shadow-custom');
+      menu.textContent = '☰';
+      menu.setAttribute('aria-expanded', 'false');
+    });
+
+    // Modals Handling
+    $$('[data-open-modal],a[href="#landlords"]').forEach(b => b.onclick = e => {
+      if (e) e.preventDefault();
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+
+    $('#closeModal').onclick = () => {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    };
+
+    modal.onclick = e => {
+      if (e.target === modal) $('#closeModal').click();
+    };
+
+    // Tabs & Search Form
+    $$('.search-tab').forEach(tab => tab.onclick = () => {
+      $$('.search-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      searchType = tab.dataset.type;
+    });
+
+    $('#searchForm').onsubmit = e => {
+      e.preventDefault();
+      const where = $('#searchLocation').value.trim();
+      showToast(`Showing ${searchType.toLowerCase()} homes${where ? ` near ${where}` : ' near your university'}.`);
+    };
+
+    // Save functionality
+    $$('.save').forEach(b => b.onclick = () => {
+      const saved = b.classList.toggle('saved');
+      b.textContent = saved ? '♥' : '♡';
+      showToast(saved ? 'Home saved to your favourites.' : 'Home removed from favourites.');
+    });
+
+    // Dashboard Data Switch
+    const dashData = {
+      Overview: ['Good afternoon, Abubakar', 'Here is how your homes are performing this week.', '03', '12', '428'],
+      Listings: ['Your active listings', 'All three listings are visible to university students.', '03', '08', '428'],
+      Inquiries: ['Student inquiries', 'You have 12 inquiries waiting for a response.', '12', '07', '04'],
+      Payments: ['Rental payments', 'All recent payment records are up to date.', '₦720k', '03', '100%']
+    };
+
+    $$('.dash-side a').forEach(a => a.onclick = () => {
+      const d = dashData[a.dataset.dash];
+      $$('.dash-side a').forEach(x => x.classList.remove('active'));
+      a.classList.add('active');
+      $('#dashHeading').textContent = d[0];
+      $('#dashSub').textContent = d[1];
+      $('#dashOne').textContent = d[2];
+      $('#dashTwo').textContent = d[3];
+      $('#dashThree').textContent = d[4];
+    });
+
+    // Slider Logic
+    const slides = $$('.slide'), dots = $('#dots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'w-1.5 h-1.5 p-0 border-0 rounded-full bg-white/35 cursor-pointer transition-all duration-200 [&.active]:w-5 [&.active]:bg-[#9ce0b6]';
+      b.setAttribute('aria-label', `Show student story ${i + 1}`);
+      b.onclick = () => showSlide(i);
+      dots.appendChild(b);
+    });
+
+    function showSlide(i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle('active', n === current));
+      $$('#dots button').forEach((d, n) => d.classList.toggle('active', n === current));
+    }
+
+    $('#prev').onclick = () => showSlide(current - 1);
+    $('#next').onclick = () => showSlide(current + 1);
+    showSlide(0);
+    setInterval(() => showSlide(current + 1), 5500);
+
+    // Scroll Reveal Observer
+    const observer = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('show');
+    }), { threshold: .12 });
+    $$('.reveal').forEach(el => observer.observe(el));
+
+    // Registration Flow
+    const registration = $('#registrationModal'), registrationForm = $('#registrationForm');
+    let accountRole = 'Student';
+
+    function openRegistration(role) {
+      accountRole = role;
+      modal.classList.remove('show');
+      registration.classList.add('show');
+      registration.setAttribute('aria-hidden', 'false');
+      $('#registrationTitle').textContent = `Create ${role.toLowerCase()} account`;
+      $('#registrationCopy').textContent = role === 'Landlord' ? 'Register and complete KYC to manage listings.' : 'Register and verify your student details to personalise listings.';
+      $('#studentFields').classList.toggle('show', role === 'Student');
+      $('#landlordFields').classList.toggle('show', role === 'Landlord');
+      $('#studentUniversity').required = role === 'Student';
+      $('#studentId').required = role === 'Student';
+      $('#landlordKyc').required = role === 'Landlord';
+      $('#propertyAddress').required = role === 'Landlord';
+      $('#kycConsent').required = role === 'Landlord';
+      $('#registrationSubmit').textContent = role === 'Landlord' ? 'Submit KYC & create account →' : 'Create student account →';
+    }
+
+    $$('.role-option').forEach(b => b.onclick = () => openRegistration(b.dataset.role));
+    $('#closeRegistration').onclick = () => registration.classList.remove('show');
+    registration.onclick = e => { if (e.target === registration) registration.classList.remove('show'); };
+
+    registrationForm.onsubmit = e => {
+      e.preventDefault();
+      registration.classList.remove('show');
+      if (accountRole === 'Landlord') {
+        document.body.classList.add('landlord-mode');
+        window.scrollTo(0, 0);
+      } else {
+        showToast(`Welcome, ${$('#accountName').value || 'student'} — your account is ready.`);
+      }
+    };
+
+    // Dynamic FAQ Addition & Accordion Logic
+    $('.faq-items').insertAdjacentHTML('beforeend', '<article class="faq-item border border-line rounded-xl bg-white"><button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">How do student registration and verification work?<span class="text-green text-base transition-transform duration-200">+</span></button><div class="faq-answer hidden px-4 pb-4 text-muted text-xs">Create a student account with your university and admission number. Dormer uses these details to personalise listings and help keep the community trusted.</div></article><article class="faq-item border border-line rounded-xl bg-white"><button class="faq-question flex justify-between gap-5 w-full p-4 border-0 text-ink bg-transparent text-left text-sm font-bold cursor-pointer">What does landlord KYC require?<span class="text-green text-base transition-transform duration-200">+</span></button><div class="faq-answer hidden px-4 pb-4 text-muted text-xs">Landlords provide contact details, a government-issued ID number, property address and consent for review. Listings appear after the KYC check is complete.</div></article>');
+    
+    $$('.faq-question').forEach(button => button.onclick = () => button.parentElement.classList.toggle('open'));
+  </script>
+</body>
+</html>
