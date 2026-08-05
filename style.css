@@ -17,6 +17,8 @@
       --r: 16px
     }
 
+
+
     * {
       box-sizing: border-box
     }
@@ -177,7 +179,7 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      border-bottom: 1px solid rgba(225, 234, 227, .9);
+      border-bottom: none;
       background: rgba(255, 254, 253, .93);
       backdrop-filter: blur(15px)
     }
