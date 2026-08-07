@@ -180,8 +180,9 @@
       top: 0;
       z-index: 30;
       border-bottom: none;
-      background: rgba(255, 254, 253, .93);
-      backdrop-filter: blur(15px)
+      background: none;
+      backdrop-filter: blur(15px);
+      cursor: pointer;
     }
 
     .header-in {
