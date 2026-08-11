@@ -571,6 +571,27 @@
       color: var(--deep)
     }
 
+    /* Ensure text-link buttons reset default browser appearance and match Dormer style */
+    button.text-link {
+      background: transparent;
+      border: 0;
+      padding: 6px 0;
+      margin: 0;
+      font: inherit;
+      color: var(--green);
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 9px;
+      transition: color .18s ease, transform .12s ease;
+    }
+
+    button.text-link:hover {
+      color: var(--deep);
+      transform: translateY(-1px);
+    }
+
     /* Cards and lists */
     .cards {
       display: grid;

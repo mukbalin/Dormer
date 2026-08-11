@@ -279,6 +279,15 @@
                 <option>Room &amp; parlour</option>
                 <option>Shared room</option>
                 <option>Apartment</option>
+                <option>Studio</option>
+                <option>Duplex</option>
+                <option>Shortlet</option>
+              </select></label></div>
+          <div class="filter-group"><label>Amenity<select id="filterAmenity">
+                <option value="">Any amenity</option>
+                <option value="furnished">Furnished</option>
+                <option value="parking">Parking</option>
+                <option value="gym">Gym</option>
               </select></label></div>
           <div class="filter-group"><label>Maximum yearly price<select id="filterPrice">
                 <option value="999999">Any price</option>
@@ -321,7 +330,7 @@
       <div class="container dashboard">
         <div class="welcome">
           <div>
-            <h1>Welcome back, Ada.</h1>
+            <h1 id="welcomeGreeting">Welcome back, Ada.</h1>
             <p>Your next home might be one search away. You have 2 saved properties.</p>
           </div>
           <div class="progress">
@@ -470,9 +479,9 @@
     <section class="view" data-view="profile">
       <div class="container profile-layout">
         <aside class="profile-card">
-          <div class="profile-avatar">AO</div>
-          <h2>Ada Okafor</h2>
-          <p>University student · Profile 72% complete</p><button class="btn btn-soft" style="margin-top:12px"
+          <div class="profile-avatar" id="profileAvatar">AO</div>
+          <h2 id="profileName">Ada Okafor</h2>
+          <p id="profileRole">University student · Profile 72% complete</p><button class="btn btn-soft" style="margin-top:12px"
             id="uploadAvatar">Upload avatar</button>
           <div class="profile-nav"><button class="active" data-profile-tab="details">Profile details</button><button
               data-profile-tab="preferences">Housing preferences</button><button
@@ -482,8 +491,8 @@
         <section class="profile-panel">
           <h1 class="heading" style="font-size:2rem" id="profileTitle">Profile details</h1>
           <p class="copy" id="profileCopy">Keep your details current so Dormer can personalise your experience.</p>
-          <form class="form-grid" id="profileForm" style="margin-top:20px"><label class="form-label">First name<input
-                value="Ada" required /></label><label class="form-label">Last name<input value="Okafor"
+              <form class="form-grid" id="profileForm" style="margin-top:20px"><label class="form-label">First name<input
+                id="profileFirstName" value="Ada" required /></label><label class="form-label">Last name<input id="profileLastName" value="Okafor"
                 required /></label><label
               class="form-label full">Bio<textarea>Student looking for a clean, quiet space close to campus.</textarea></label><label
               class="form-label">University<input list="universities" value="University of Lagos" /></label><label
@@ -597,6 +606,17 @@
           data-auth-role="landlord"><i>⌂</i><span><strong>Continue as a landlord</strong><span>List properties and
               manage bookings.</span></span></button>
       </div>
+      <div class="modal-step" data-auth-step="login">
+        <h2>Login to Dormer</h2>
+        <p>Enter your email and password to access your student or landlord account.</p>
+        <form class="modal-form" id="loginForm"><label>Email address<input id="loginEmail" type="email" required
+              placeholder="you@example.com" /></label><label>Password<input id="loginPassword" type="password" required
+              placeholder="Enter your password" /></label>
+          <p class="error" id="loginError"></p>
+          <button class="btn btn-primary" type="submit">Login</button>
+          <button class="text-link" type="button" id="loginToRegister">Don't have an account? Register</button>
+        </form>
+      </div>
       <div class="modal-step" data-auth-step="form">
         <h2 id="authTitle">Create your account</h2>
         <p id="authCopy">Start with a few details.</p>
@@ -620,6 +640,7 @@
             <div class="notice">KYC review is simulated in this MVP. A production release needs encrypted document
               upload and human approval.</div>
           </div><button class="btn btn-primary" type="submit" id="authSubmit">Create account →</button><button
+            class="text-link" type="button" id="switchToLogin">Already have an account? Login</button><button
             class="text-link" type="button" id="forgotPassword">Forgot password?</button>
         </form>
       </div>
