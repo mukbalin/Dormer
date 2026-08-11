@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Dormer is a student accommodation platform for verified homes, bookings, and roommates." />
-  <title>Dormer | Student homes, simply found</title>
+  <title>Dormer | Student apartment, simply found</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -28,14 +28,14 @@
   </header>
 
   <main>
-    <!-- Section: View 'home' -->
+    <!-- Section: View 'apartment' -->
     <section class="view active" data-view="home">
       <!-- Section: Hero -->
       <section class="hero">
         <div class="container hero-in">
-          <div class="location-tag"><i class="pulse"></i> Trusted student homes across Nigeria</div>
-          <h1>Find your next <em>home</em> with no stress.</h1>
-          <p class="hero-lead">Find verified rooms, flats and shortlets near your university—clear prices, real photos
+          <div class="location-tag"><i class="pulse"></i> Trusted student apartment across Nigeria</div>
+          <h1>Find your next <em>apartment</em> with no stress.</h1>
+          <p class="hero-lead">Find verified rooms, flats and shortlets near your institution—clear prices, real photos
             and support from viewing to move-in.</p>
           <form class="search-panel" id="heroSearch">
             <div class="search-tabs"><button class="search-tab active" type="button"
@@ -43,8 +43,8 @@
                 data-search-type="Shortlet">Shortlet</button><button class="search-tab" type="button"
                 data-search-type="Shared home">Shared home</button></div>
             <div class="search-grid">
-              <label class="field"><span>⌖</span><span class="sr">University</span><input id="heroUniversity"
-                  list="universities" placeholder="Select or type your university" autocomplete="off" /></label>
+              <label class="field"><span>⌖</span><span class="sr">Institution</span><input id="heroUniversity"
+                  list="Institution" placeholder="Select or type your institution" autocomplete="off" /></label>
               <label class="field"><span>⌂</span><span class="sr">Room type</span><select id="heroType">
                   <option value="">Any home type</option>
                   <option>Self contain</option>
@@ -58,10 +58,10 @@
                   <option>₦100k–₦200k</option>
                   <option>₦200k–₦350k</option>
                 </select></label>
-              <button class="search-go" type="submit">Search homes →</button>
+              <button class="search-go" type="submit">Search apartments →</button>
             </div>
           </form>
-          <datalist id="universities">
+          <datalist id="Institutions">
             <option value="Abubakar Tafawa Balewa University, Bauchi">
             <option value="Ahmadu Bello University, Zaria">
             <option value="Bayero University, Kano">
@@ -116,7 +116,7 @@
               data-quick="University of Ibadan">University of Ibadan</button><button type="button"
               data-quick="Shared homes">Shared homes</button></div>
           <div class="hero-stats">
-            <div class="stat"><strong>0+</strong><span>student-ready homes</span></div>
+            <div class="stat"><strong>0+</strong><span>student-ready apartments</span></div>
             <div class="stat"><strong>0+</strong><span>verified local hosts</span></div>
             <div class="stat"><strong>0/0</strong><span>student satisfaction</span></div>
           </div>
@@ -135,12 +135,12 @@
         <div class="section-top">
           <div>
             <p class="eyebrow">Fresh on Dormer</p>
-            <h2 class="heading">Homes worth a closer look.</h2>
+            <h2 class="heading">apartments worth a closer look.</h2>
             <p class="copy">Student-friendly spaces with practical prices, verified details and the features that
               matter.</p>
-          </div><button class="text-link" data-nav="listings">Browse all homes →</button>
+          </div><button class="text-link" data-nav="listings">Browse all apartment →</button>
         </div>
-        <div class="cards" id="homeCards"></div>
+        <div class="cards" id="apatmentCards"></div>
       </section>
       <!-- Section: Why Dormer / features -->
       <section class="section section-cream">
@@ -169,11 +169,11 @@
           <div>
             <p class="eyebrow">How it works</p>
             <h2 class="heading">A safer way to find your place.</h2>
-            <p class="copy">Dormer makes it simpler to discover, compare, view and book a home that feels right.</p>
+            <p class="copy">Dormer makes it simpler to discover, compare, view and book an apartment that feels right.</p>
             <div class="steps">
               <div class="step"><span class="step-no">01</span>
                 <div>
-                  <h3>Select your university</h3>
+                  <h3>Select your institution</h3>
                   <p>Start with the campus and location that matter to you.</p>
                 </div>
               </div>
@@ -237,8 +237,8 @@
         </div>
         <div class="faq-items" id="faq">
           <article class="faq-item open"><button class="faq-q">Can I use Dormer for any
-              university?<span>+</span></button>
-            <div class="faq-a">Yes. Choose a university from the suggestions or type your own campus to begin searching.
+              institution?<span>+</span></button>
+            <div class="faq-a">Yes. Choose an institution from the suggestions or type your own campus to begin searching.
             </div>
           </article>
           <article class="faq-item"><button class="faq-q">How are listings verified?<span>+</span></button>
@@ -262,8 +262,8 @@
       <div class="page-head">
         <div class="container page-head-row">
           <div>
-            <p class="eyebrow">Explore homes</p>
-            <h1 class="heading">Find your next student home.</h1>
+            <p class="eyebrow">Explore apartment</p>
+            <h1 class="heading">Find your next student apartment.</h1>
             <p class="copy">Use the filters to narrow down rooms, apartments and shortlets near your campus.</p>
           </div><button class="btn btn-light" id="loadListings">Refresh listings</button>
         </div>
@@ -271,8 +271,8 @@
       <div class="container listings-layout">
         <aside class="filters">
           <h2>Filters</h2>
-          <div class="filter-group"><label>University or area<input id="filterUniversity"
-                placeholder="University or city" /></label></div>
+          <div class="filter-group"><label>Institution or area<input id="filterUniversity"
+                placeholder="Institution or city" /></label></div>
           <div class="filter-group"><label>Room type<select id="filterType">
                 <option value="">All types</option>
                 <option>Self contain</option>
@@ -292,8 +292,8 @@
           <div class="filter-group"><label>Maximum yearly price<select id="filterPrice">
                 <option value="999999">Any price</option>
                 <option value="100000">₦100,000</option>
-                <option value="200000">₦200,000</option>
-                <option value="350000">₦350,000</option>
+                <option value="200000">₦150,000</option>
+                <option value="350000">₦200,000</option>
               </select></label></div>
           <div class="filter-group"><label><input type="checkbox" id="filterVerified" /> Verified homes
               only</label><label><input type="checkbox" id="filterWifi" /> Wi-Fi available</label><label><input
@@ -301,7 +301,7 @@
             id="clearFilters">Clear filters</button>
         </aside>
         <div class="listing-results">
-          <div class="results-bar"><span id="resultsText">Loading homes…</span><label>Sort <select id="sortListings">
+          <div class="results-bar"><span id="resultsText">Loading apartments…</span><label>Sort <select id="sortListings">
                 <option value="recommended">Recommended</option>
                 <option value="low">Price: low to high</option>
                 <option value="distance">Nearest campus</option>
@@ -311,7 +311,7 @@
           <div class="cards hide" id="listingCards"></div>
           <div class="empty hide" id="listingEmpty">
             <div><i>⌕</i>
-              <h3>No homes match those filters</h3>
+              <h3>No apartment match those filters</h3>
               <p>Try increasing your budget, clearing a filter, or using another campus area.</p><button
                 class="btn btn-primary" id="emptyReset">Reset filters</button>
             </div>
@@ -344,7 +344,7 @@
             <section class="dashboard-section">
               <h2>Quick actions</h2>
               <div class="quick-actions"><button class="action" data-nav="listings"><i>⌕</i><strong>Search
-                    homes</strong><span>Explore verified listings</span></button><button class="action"
+                    apartments</strong><span>Explore verified listings</span></button><button class="action"
                   data-nav="roommates"><i>♧</i><strong>Find a roommate</strong><span>See compatible
                     students</span></button><button class="action" id="completeProfile"><i>◉</i><strong>Complete
                     profile</strong><span>Improve your matches</span></button></div>
@@ -494,12 +494,12 @@
               <form class="form-grid" id="profileForm" style="margin-top:20px"><label class="form-label">First name<input
                 id="profileFirstName" value="Ada" required /></label><label class="form-label">Last name<input id="profileLastName" value="Okafor"
                 required /></label><label
-              class="form-label full">Bio<textarea>Student looking for a clean, quiet space close to campus.</textarea></label><label
-              class="form-label">University<input list="universities" value="University of Lagos" /></label><label
+              class="form-label full">Bio<textarea>Student looking for a clean, quiet apartment close to campus.</textarea></label><label
+              class="form-label">Institution<input list="institution" value="University of Lagos" /></label><label
               class="form-label">Budget<select>
                 <option>Under ₦100k</option>
-                <option selected>₦100k–₦200k</option>
-                <option>₦200k–₦350k</option>
+                <option selected>₦100k–₦150k</option>
+                <option>₦150k–₦200k</option>
               </select></label><label class="form-label">Preferred room<select>
                 <option>Self contain</option>
                 <option>Shared room</option>
@@ -532,7 +532,7 @@
               <div><i>⌂</i>
                 <h3>No bookings yet</h3>
                 <p>When you request or confirm a stay, it will appear here with its status and a receipt placeholder.
-                </p><button class="btn btn-primary" data-nav="listings">Explore homes</button>
+                </p><button class="btn btn-primary" data-nav="listings">Explore apartments</button>
               </div>
             </div>
           </div>
@@ -574,12 +574,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div><button class="brand" data-nav="home"><span class="brand-mark">⌂</span><span>Dormer</span></button>
-          <p class="footer-copy">Verified student homes, easier bookings and better shared living—wherever you study.
+        <div><button class="brand" data-nav="apartment"><span class="brand-mark">⌂</span><span>Dormer</span></button>
+          <p class="footer-copy">Verified student apartments, easier bookings and better shared living—wherever you study.
           </p>
         </div>
         <div>
-          <h3>Explore</h3><button data-nav="listings">Find a home</button><button
+          <h3>Explore</h3><button data-nav="listings">Find an apartment</button><button
             data-nav="roommates">Roommates</button><button data-nav="student">Student dashboard</button>
         </div>
         <div>
@@ -626,8 +626,8 @@
                 type="password" required minlength="8" placeholder="At least 8 characters" /><button type="button"
                 id="togglePassword">Show</button></div></label>
           <p class="error" id="authError"></p>
-          <div id="studentAuthFields"><label>University<input list="universities" id="authUniversity"
-                placeholder="Select or type your university" /></label><label>Student ID or admission number<input
+          <div id="studentAuthFields"><label>Institution<input list="institution" id="authInstitution"
+                placeholder="Select or type your institution" /></label><label>Student ID or admission number<input
                 id="studentId" placeholder="For profile verification" /></label>
             <div class="notice">Student ID verification is a safe placeholder in this MVP. Production requires secure
               review.</div>
@@ -680,7 +680,7 @@
       <h2>Add a property</h2>
       <p>Create a draft listing. It will remain pending until KYC and listing verification are complete.</p>
       <form class="modal-form" id="propertyForm"><label>Property title<input required
-            placeholder="e.g. Quiet studio near campus" /></label><label>University or area<input required
+            placeholder="e.g. Quiet studio near campus" /></label><label>Institution or area<input required
             list="universities" placeholder="University or neighbourhood" /></label><label>Yearly price<input required
             type="number" min="1" placeholder="85000" /></label><label>Property description<textarea required
             placeholder="Describe the room, amenities and availability."></textarea></label><button
