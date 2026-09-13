@@ -44,7 +44,7 @@
                 data-search-type="Shared home">Shared home</button></div>
             <div class="search-grid">
               <label class="field"><span>⌖</span><span class="sr">Institution</span><input id="heroUniversity"
-                  list="Institution" placeholder="Select or type your institution" autocomplete="off" /></label>
+                  list="Institutions" placeholder="Select or type your institution" autocomplete="off" /></label>
               <label class="field"><span>⌂</span><span class="sr">Room type</span><select id="heroType">
                   <option value="">Any home type</option>
                   <option>Self contain</option>
@@ -127,7 +127,7 @@
         <div class="container trust-in">
           <div class="trust-item"><span class="trust-icon">✓</span>Every listing checked before it goes live</div>
           <div class="trust-item"><span class="trust-icon">₦</span>Clear pricing, no surprise charges</div>
-          <div class="trust-item"><span class="trust-icon">♧</span>Support through your move-in</div>
+          <div class="trust-item"><span class="trust-icon">✓</span>Verified, Relaible and Fast</div>
         </div>
       </section>
       <!-- Section: Fresh on Dormer / featured cards -->
@@ -140,7 +140,7 @@
               matter.</p>
           </div><button class="text-link" data-nav="listings">Browse all apartment →</button>
         </div>
-        <div class="cards" id="apatmentCards"></div>
+        <div class="cards" id="homeCards"></div>
       </section>
       <!-- Section: Why Dormer / features -->
       <section class="section section-cream">
@@ -193,7 +193,7 @@
           </div>
           <div class="how-photo">
             <aside class="quote-card">
-              <p>“I found a clean shared apartment near campus before the semester started. The price and photos
+              <p>“I found a cdclean shared apartment near campus before the semester started. The price and photos
                 matched.”</p>
               <div class="quote-user"><span class="avatar">ZM</span>
                 <div><strong>Zainab M.</strong><span>300 Level student</span></div>
@@ -495,7 +495,7 @@
                 id="profileFirstName" value="Ada" required /></label><label class="form-label">Last name<input id="profileLastName" value="Okafor"
                 required /></label><label
               class="form-label full">Bio<textarea>Student looking for a clean, quiet apartment close to campus.</textarea></label><label
-              class="form-label">Institution<input list="institution" value="University of Lagos" /></label><label
+              class="form-label">Institution<input list="Institutions" value="University of Lagos" /></label><label
               class="form-label">Budget<select>
                 <option>Under ₦100k</option>
                 <option selected>₦100k–₦150k</option>
@@ -626,7 +626,7 @@
                 type="password" required minlength="8" placeholder="At least 8 characters" /><button type="button"
                 id="togglePassword">Show</button></div></label>
           <p class="error" id="authError"></p>
-          <div id="studentAuthFields"><label>Institution<input list="institution" id="authInstitution"
+          <div id="studentAuthFields"><label>Institution<input list="Institutions" id="authInstitution"
                 placeholder="Select or type your institution" /></label><label>Student ID or admission number<input
                 id="studentId" placeholder="For profile verification" /></label>
             <div class="notice">Student ID verification is a safe placeholder in this MVP. Production requires secure
@@ -681,7 +681,7 @@
       <p>Create a draft listing. It will remain pending until KYC and listing verification are complete.</p>
       <form class="modal-form" id="propertyForm"><label>Property title<input required
             placeholder="e.g. Quiet studio near campus" /></label><label>Institution or area<input required
-            list="universities" placeholder="University or neighbourhood" /></label><label>Yearly price<input required
+            list="Institutions" placeholder="University or neighbourhood" /></label><label>Yearly price<input required
             type="number" min="1" placeholder="85000" /></label><label>Property description<textarea required
             placeholder="Describe the room, amenities and availability."></textarea></label><button
           class="btn btn-primary">Save draft listing</button></form>

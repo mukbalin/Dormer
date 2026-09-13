@@ -10,61 +10,53 @@ const $$ = (s) => [...document.querySelectorAll(s)];
 const properties = [
   {
     id: 1,
-    title: "Campus View Studio",
+    title: "Self contain",
     area: "University Road · 8 mins from campus",
     price: 85000,
     type: "Self contain",
     distance: 0.8,
     rating: 4.8,
     verified: true,
-    wifi: true,
+    wifi: false,
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Prepaid power", "Water", "Security"],
-    furnished: true,
-    parking: false,
-    gym: false,
+      "Dormer Image/20.jpg",
   },
   {
     id: 2,
-    title: "Quiet Room & Parlour",
+    title: "Self contain",
     area: "Student Village · 12 mins from campus",
-    price: 145000,
-    type: "Room & parlour",
+    price: 100000,
+    type: "Self contain",
     distance: 1.3,
     rating: 4.6,
     verified: true,
     wifi: false,
-    gender: "Female",
+    gender: "any",
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Water", "Gated compound", "Parking"],
+      "Dormer Image/14.jpg",
     furnished: false,
-    parking: true,
-    gym: false,
   },
   {
     id: 3,
-    title: "Furnished Shared Apartment",
-    area: "Campus Extension · 6 mins from campus",
+    title: " Shared Apartment",
+    area: "Tudun Wada · 6 mins from campus",
     price: 65000,
     type: "Shared room",
     distance: 0.6,
     rating: 4.7,
     verified: true,
-    wifi: true,
+    wifi: false,
     gender: "Any",
     beds: "Shared",
-    bath: "2 baths",
+    bath: " baths",
     image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Wi-Fi", "Furnished", "Water"],
-    furnished: true,
+      "Dormer Image/15.jpg",
+    furnished: false,
     parking: false,
     gym: false,
   },
@@ -82,77 +74,73 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Prepaid power", "Kitchen", "Security"],
+      "Dormer Image/17.jpg",
     furnished: false,
     parking: false,
     gym: false,
   },
   {
     id: 5,
-    title: "Female-Friendly Shared Flat",
-    area: "Lecture Hall Road · 9 mins from campus",
+    title: " Shared Flat",
+    area: "Bauchi Road · 9 mins from campus",
     price: 95000,
     type: "Shared room",
     distance: 0.9,
     rating: 4.9,
     verified: true,
-    wifi: true,
+    wifi: false,
     gender: "Female",
     beds: "Shared",
-    bath: "2 baths",
+    bath: "1 baths",
     image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Wi-Fi", "Female only", "Water"],
-    furnished: true,
+      "Dormer Image/18.jpg",
+    furnished: false,
     parking: false,
     gym: false,
   },
   {
     id: 6,
-    title: "Weekend Shortlet Suite",
-    area: "Campus Gate · 5 mins from campus",
+    title: "Self contain",
+    area: "Dada · 5 mins from campus",
     price: 120000,
     type: "Shortlet",
     distance: 0.5,
     rating: 4.5,
     verified: true,
-    wifi: true,
+    wifi: false,
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Wi-Fi", "Furnished", "Generator"],
-    furnished: true,
+      "Dormer Image/10.jpg",
+    furnished: false,
     parking: false,
     gym: false,
   },
   {
     id: 7,
-    title: "Bright Two-Bed Apartment",
+    title: "Shared Apartment",
     area: "Mabushi Close · 10 mins from campus",
-    price: 220000,
-    type: "Apartment",
+    price: 120000,
+    type: "Shared Apartment",
     distance: 1.1,
     rating: 4.8,
     verified: true,
-    wifi: true,
+    wifi: false,
     gender: "Any",
-    beds: "2 rooms",
-    bath: "2 baths",
+    beds: "rooms",
+    bath: "baths",
     image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Wi-Fi", "Kitchen", "Parking"],
+      "Dormer Image/5.jpg",
     furnished: false,
-    parking: true,
+    parking: false,
     gym: false,
   },
   {
     id: 8,
-    title: "Modern Studio Apartment",
+    title: "Self contain",
     area: "Sango Estate · 14 mins from campus",
-    price: 260000,
+    price: 100000,
     type: "Studio",
     distance: 1.5,
     rating: 4.7,
@@ -162,7 +150,7 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/7.jpg",
     amenities: ["Wi-Fi", "Balcony", "Security"],
     furnished: true,
     parking: false,
@@ -172,21 +160,17 @@ const properties = [
     id: 9,
     title: "Premium Apartment with Study Room",
     area: "New Garage Area · 7 mins from campus",
-    price: 310000,
+    price: 200000,
     type: "Apartment",
     distance: 0.7,
     rating: 4.9,
     verified: true,
     wifi: true,
     gender: "Any",
-    beds: "2 rooms",
-    bath: "2 baths",
+    beds: "1 rooms",
+    bath: "1 baths",
     image:
-      "https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&q=85",
-    amenities: ["Wi-Fi", "Study desk", "Generator"],
-    furnished: true,
-    parking: true,
-    gym: true,
+      "Dormer Image/21.jpg",
   },
   {
     id: 10,
@@ -202,7 +186,7 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Water", "Security", "Kitchen"],
     furnished: false,
     parking: false,
@@ -222,7 +206,7 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Gym", "Parking"],
     furnished: true,
     parking: true,
@@ -242,7 +226,7 @@ const properties = [
     beds: "3 rooms",
     bath: "2 baths",
     image:
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Balcony", "Parking"],
     furnished: false,
     parking: true,
@@ -262,7 +246,7 @@ const properties = [
     beds: "Shared",
     bath: "2 baths",
     image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Shared kitchen", "Security"],
     furnished: true,
     parking: false,
@@ -282,7 +266,7 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Kitchen", "Water", "Security"],
     furnished: true,
     parking: false,
@@ -302,7 +286,7 @@ const properties = [
     beds: "2 rooms",
     bath: "2 baths",
     image:
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Pool", "Parking"],
     furnished: true,
     parking: true,
@@ -322,7 +306,7 @@ const properties = [
     beds: "1 room",
     bath: "1 bath",
     image:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=85",
+      "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Furnished", "Kitchen"],
     furnished: true,
     parking: false,
@@ -608,8 +592,8 @@ function showDetail(id) {
     <button class="back" data-nav="listings">← Back to listings</button>
     <div class="gallery">
       <img src="${p.image}" alt="${p.title}" />
-      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=85" alt="Living space" />
-      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=85" alt="Property exterior" />
+      <img src="${p.image}" alt="Living space" />
+      <img src="Dormer Image/default.jpg" />
     </div>
     <div class="detail-layout">
       <article>
@@ -617,7 +601,7 @@ function showDetail(id) {
         <h1 class="detail-title" style="margin-top:11px">${p.title}</h1>
         <p class="detail-sub">⌖ ${p.area} · ★ ${p.rating} rating · ${p.distance} km to campus</p>
         <div class="pill-row">
-          ${p.amenities.map((a) => `<span class="pill">${a}</span>`).join("")}
+          ${(p.amenities || []).map((a) => `<span class="pill">${a}</span>`).join("")}
           <span class="pill">Available now</span>
         </div>
         <p class="detail-copy">
@@ -1127,7 +1111,7 @@ $$("[data-auth-role]").forEach(
 
       $("#studentAuthFields").classList.toggle("hide", authRole !== "student");
       $("#landlordAuthFields").classList.toggle("hide", authRole !== "landlord");
-      $("#authUniversity").required = authRole === "student";
+      $("#authInstitution").required = authRole === "student";
       $("#studentId").required = authRole === "student";
       $("#landlordPhone").required = authRole === "landlord";
       $("#landlordKyc").required = authRole === "landlord";
@@ -1293,3 +1277,4 @@ $$(".reveal").forEach((el) => observer.observe(el));
 // App Initial Render Calls
 renderHome();
 renderLandlord();
+
