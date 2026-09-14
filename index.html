@@ -8,6 +8,8 @@
     content="Dormer is a student accommodation platform for verified homes, bookings, and roommates." />
   <title>Dormer | Student apartment, simply found</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIINfQ3R7mZ7u9U5L0x0wq7h4dD3gq8Q=" crossorigin="" />
 </head>
 
 <body>
@@ -16,8 +18,9 @@
       <div class="brand" data-nav="home" aria-label="Dormer home" ><span
           class="brand-mark">⌂</span><span>Dormer</span></div>
       <nav class="nav" id="nav" aria-label="Primary navigation">
-        <button class="active" data-nav="home">Find a home</button><button data-nav="listings">Explore</button><button
-          data-nav="roommates">Roommates</button><button data-nav="landlord">For landlords</button>
+          <button class="active" data-nav="home">Find a home</button><button data-nav="listings">Explore</button><button
+          data-nav="roommates">Roommates</button><button data-nav="campus-guide">Campus Guide</button><button
+          data-nav="landlord">For landlords</button>
       </nav>
       <div class="header-actions"><button class="icon-btn notification-wrap" id="notificationsButton"
           aria-label="Open notifications">♧<i class="notification-dot"></i></button><button class="btn btn-light"
@@ -141,6 +144,18 @@
           </div><button class="text-link" data-nav="listings">Browse all apartment →</button>
         </div>
         <div class="cards" id="homeCards"></div>
+      </section>
+      <!-- Section: Campus Guide teaser -->
+      <section class="section section-cream campus-teaser">
+        <div class="container campus-teaser-in reveal">
+          <div>
+            <p class="eyebrow">Campus life</p>
+            <h2 class="heading">Campus Guide</h2>
+            <p class="campus-teaser-lead">Find your way around campus with ease.</p>
+            <p class="copy">Explore important campus locations, get directions, and discover nearby accommodation—all in one place.</p>
+          </div>
+          <button class="btn btn-primary" data-nav="campus-guide">Explore Campus Guide <span aria-hidden="true">→</span></button>
+        </div>
       </section>
       <!-- Section: Why Dormer / features -->
       <section class="section section-cream">
@@ -316,6 +331,43 @@
                 class="btn btn-primary" id="emptyReset">Reset filters</button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: View 'campus-guide' -->
+    <section class="view" data-view="campus-guide">
+      <div class="page-head">
+        <div class="container page-head-row">
+          <div>
+            <p class="eyebrow">Campus life</p>
+            <h1 class="heading">Campus Guide</h1>
+            <p class="copy">Find your way around campus with ease. Explore important locations, get directions, and find a Dormer home nearby.</p>
+          </div>
+          <button class="btn btn-light" data-nav="listings">Browse nearby homes</button>
+        </div>
+      </div>
+      <div class="container campus-guide-layout">
+        <aside class="campus-sidebar">
+          <label class="campus-search"><span aria-hidden="true">⌕</span><span class="sr">Search campus locations</span><input id="campusSearch" type="search" placeholder="Search locations" autocomplete="off" /></label>
+          <div class="campus-location-list" id="campusLocationList"></div>
+        </aside>
+        <div class="campus-main">
+          <div class="campus-map-wrap">
+            <div id="campusMap" class="campus-map" aria-label="Interactive campus map"></div>
+            <div class="campus-map-note">Map data © OpenStreetMap contributors</div>
+          </div>
+          <section class="campus-place-panel" id="campusPlacePanel" aria-live="polite"></section>
+          <section class="campus-nearby">
+            <div class="section-top">
+              <div>
+                <p class="eyebrow">Live with less commute</p>
+                <h2 class="heading">Nearby Dormer accommodation.</h2>
+              </div>
+              <button class="text-link" data-nav="listings">View all homes →</button>
+            </div>
+            <div class="cards campus-property-cards" id="campusPropertyCards"></div>
+          </section>
         </div>
       </div>
     </section>
@@ -705,6 +757,8 @@
     </div>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js" defer></script>
 </body>
 </html>

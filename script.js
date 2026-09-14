@@ -314,6 +314,24 @@ const properties = [
   },
 ];
 
+const campusLocations = [
+  { id: "main-gate", name: "Main gate", category: "Access", description: "The primary entrance and first point of orientation for visitors.", coords: [9.0768, 7.3982] },
+  { id: "library", name: "University library", category: "Study", description: "A quiet place for research, group work and borrowing course materials.", coords: [9.0784, 7.4001] },
+  { id: "lecture-halls", name: "Central lecture halls", category: "Learning", description: "The main cluster of lecture theatres for large classes and examinations.", coords: [9.0775, 7.4021] },
+  { id: "faculties", name: "Faculty complex", category: "Learning", description: "Faculty offices, departmental rooms and student notice boards.", coords: [9.0758, 7.4015] },
+  { id: "medical-centre", name: "Medical centre", category: "Health", description: "Campus health support for consultations and urgent first aid.", coords: [9.0747, 7.3996] },
+  { id: "security-post", name: "Security post", category: "Safety", description: "Report an incident, ask for help or get after-hours directions.", coords: [9.0771, 7.3972] },
+  { id: "mosque", name: "Campus mosque", category: "Faith", description: "A campus worship space and community point.", coords: [9.0791, 7.3986] },
+  { id: "church", name: "Campus church", category: "Faith", description: "A campus worship space and student fellowship point.", coords: [9.0739, 7.4028] },
+  { id: "cafeteria", name: "Main cafeteria", category: "Food", description: "Affordable meals, snacks and a place to recharge between classes.", coords: [9.0761, 7.4040] },
+  { id: "admin", name: "Administrative offices", category: "Services", description: "Find registry, bursary and other central student services.", coords: [9.0749, 7.4052] },
+  { id: "atm", name: "ATM and financial services", category: "Services", description: "Convenient access to ATMs and everyday financial services.", coords: [9.0738, 7.3979] },
+];
+
+let campusMap;
+let campusMarkers = new Map();
+let selectedCampusLocation = campusLocations[0];
+
 // Sample Roommates Dataset
 const roommates = [
   {
@@ -546,6 +564,77 @@ function updateProfileUI() {
   }
 }
 
+function renderCampusLocations(query = "") {
+  const normalizedQuery = query.trim().toLowerCase();
+  const locations = campusLocations.filter((location) =>
+    `${location.name} ${location.category}`.toLowerCase().includes(normalizedQuery)
+  );
+
+  $("#campusLocationList").innerHTML = locations.length
+    ? locations.map((location) => `<button class="campus-location ${location.id === selectedCampusLocation.id ? "active" : ""}" data-campus-location="${location.id}">
+        <span class="campus-location-icon">⌖</span><span><strong>${location.name}</strong><small>${location.category}</small></span>
+      </button>`).join("")
+    : `<p class="campus-no-results">No campus locations found.</p>`;
+
+  $$('[data-campus-location]').forEach((button) => {
+    button.onclick = () => selectCampusLocation(button.dataset.campusLocation);
+  });
+}
+
+function renderCampusPlace(location) {
+  const directionsUrl = `https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=Current+Location%3B${location.coords[0]}%2C${location.coords[1]}`;
+  $("#campusPlacePanel").innerHTML = `<div>
+    <p class="eyebrow">Selected location</p><h2>${location.name}</h2><p>${location.description}</p>
+  </div><div class="campus-place-actions"><span class="pill">${location.category}</span><a class="btn btn-soft" href="${directionsUrl}" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>`;
+}
+
+function renderNearbyProperties() {
+  const nearby = [...properties].sort((a, b) => a.distance - b.distance).slice(0, 3);
+  $("#campusPropertyCards").innerHTML = nearby.map(card).join("");
+  bindCards();
+}
+
+function selectCampusLocation(id) {
+  const location = campusLocations.find((item) => item.id === id);
+  if (!location) return;
+  selectedCampusLocation = location;
+  renderCampusLocations($("#campusSearch").value);
+  renderCampusPlace(location);
+  const marker = campusMarkers.get(location.id);
+  if (marker && campusMap) {
+    campusMap.setView(location.coords, 16);
+    marker.openPopup();
+  }
+}
+
+function renderCampusGuide() {
+  if (!window.L) {
+    $("#campusPlacePanel").innerHTML = '<div class="notice">The map is unavailable right now. The campus location list is still available.</div>';
+    renderCampusLocations($("#campusSearch").value);
+    renderNearbyProperties();
+    return;
+  }
+
+  if (!campusMap) {
+    campusMap = L.map("campusMap").setView(selectedCampusLocation.coords, 15);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+      maxZoom: 19,
+    }).addTo(campusMap);
+
+    campusLocations.forEach((location) => {
+      const marker = L.marker(location.coords).addTo(campusMap).bindPopup(`<strong>${location.name}</strong><br>${location.category}`);
+      marker.on("click", () => selectCampusLocation(location.id));
+      campusMarkers.set(location.id, marker);
+    });
+  }
+
+  renderCampusLocations($("#campusSearch").value);
+  renderCampusPlace(selectedCampusLocation);
+  renderNearbyProperties();
+  setTimeout(() => campusMap.invalidateSize(), 0);
+}
+
 
 // ==========================================
 // 4. VIEW NAVIGATION & DETAILS VIEW
@@ -569,6 +658,7 @@ let rawNav = function (view) {
   if (view === "roommates") renderRoommates();
   if (view === "student") renderHome();
   if (view === "bookings") renderBookings();
+  if (view === "campus-guide") renderCampusGuide();
 };
 
 let nav = function (view) {
@@ -1052,6 +1142,8 @@ $("#clearFilters").onclick = $("#emptyReset").onclick = () => {
 };
 
 $("#loadListings").onclick = loadListings;
+
+$("#campusSearch").oninput = (event) => renderCampusLocations(event.target.value);
 
 // FAQ Accordions
 $$(".faq-q").forEach(
