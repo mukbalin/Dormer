@@ -204,11 +204,12 @@
     .brand-mark {
       display: grid;
       place-items: center;
+      flex: 0 0 35px;
       width: 35px;
       height: 35px;
-      border-radius: 11px 11px 11px 3px;
-      color: #fff;
-      background: var(--green);
+      max-width: 35px;
+      object-fit: contain;
+      border-radius: 11px;
       box-shadow: 0 5px 12px rgba(27, 116, 78, .25)
     }
 

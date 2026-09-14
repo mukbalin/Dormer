@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 767 767" role="img" aria-labelledby="title desc">
+  <title id="title">Dormer logo</title>
+  <desc id="desc">White Dormer mark on a dark green rounded square</desc>
+  <rect width="767" height="767" rx="118" fill="#003b0f"/>
+  <path fill="#fff" d="M267 147c87 37 178 90 228 148 34 40 51 83 51 130v38l-74-29c0-40-19-78-56-110-34-30-83-60-155-92v199l36 36 36-36 128 77v149l-67-36v-76l-61-36-44 41-78-55V147z"/>
+</svg>
