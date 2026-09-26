@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Dormer is a student accommodation platform for verified homes, bookings, and roommates." />
+    content="Dormer is a student accommodation platform for verified homes and bookings." />
   <title>Dormer | Student apartment, simply found</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -19,7 +19,7 @@
           alt="" /><span>Dormer</span></div>
       <nav class="nav" id="nav" aria-label="Primary navigation">
           <button class="active" data-nav="home">Find a home</button><button data-nav="listings">Explore</button><button
-          data-nav="roommates">Roommates</button><button data-nav="campus-guide">Campus Guide</button><button
+          data-nav="campus-guide">Apartment Finder</button><button
           data-nav="landlord">For landlords</button>
       </nav>
       <div class="header-actions"><button class="icon-btn notification-wrap" id="notificationsButton"
@@ -43,8 +43,7 @@
           <form class="search-panel" id="heroSearch">
             <div class="search-tabs"><button class="search-tab active" type="button"
                 data-search-type="Rent">Rent</button><button class="search-tab" type="button"
-                data-search-type="Shortlet">Shortlet</button><button class="search-tab" type="button"
-                data-search-type="Shared home">Shared home</button></div>
+                data-search-type="Shortlet">Shortlet</button></div>
             <div class="search-grid">
               <label class="field"><span>⌖</span><span class="sr">Institution</span><input id="heroUniversity"
                   list="Institutions" placeholder="Select or type your institution" autocomplete="off" /></label>
@@ -53,7 +52,6 @@
                   <option>Self contain</option>
                   <option>Room &amp; parlour</option>
                   <option>Apartment</option>
-                  <option>Shared room</option>
                 </select></label>
               <label class="field"><span>₦</span><span class="sr">Budget</span><select id="heroBudget">
                   <option value="">Any budget</option>
@@ -116,8 +114,7 @@
           <div class="quick"><span>Popular searches:</span><button type="button"
               data-quick="Abubakar Tafawa Balawa University">ATBU Bauchi</button><button type="button"
               data-quick="Ahmadu Bello University, Zaria">ABU Zaria</button><button type="button"
-              data-quick="University of Ibadan">University of Ibadan</button><button type="button"
-              data-quick="Shared homes">Shared homes</button></div>
+              data-quick="University of Ibadan">University of Ibadan</button></div>
           <div class="hero-stats">
             <div class="stat"><strong>0+</strong><span>student-ready apartments</span></div>
             <div class="stat"><strong>0+</strong><span>verified local hosts</span></div>
@@ -145,16 +142,16 @@
         </div>
         <div class="cards" id="homeCards"></div>
       </section>
-      <!-- Section: Campus Guide teaser -->
+      <!-- Section: Apartment Finder teaser -->
       <section class="section section-cream campus-teaser">
         <div class="container campus-teaser-in reveal">
           <div>
-            <p class="eyebrow">Campus life</p>
-            <h2 class="heading">Campus Guide</h2>
-            <p class="campus-teaser-lead">Find your way around campus with ease.</p>
-            <p class="copy">Explore important campus locations, get directions, and discover nearby accommodation—all in one place.</p>
+            <p class="eyebrow">Find a place to visit</p>
+            <h2 class="heading">Apartment Finder</h2>
+            <p class="campus-teaser-lead">Choose a home. Plan a closer look.</p>
+            <p class="copy">Search student apartments by name or area, compare prices and distance, then open the neighborhood or request a viewing.</p>
           </div>
-          <button class="btn btn-primary" data-nav="campus-guide">Explore Campus Guide <span aria-hidden="true">→</span></button>
+          <button class="btn btn-primary" data-nav="campus-guide">Find an apartment <span aria-hidden="true">→</span></button>
         </div>
       </section>
       <!-- Section: Why Dormer / features -->
@@ -208,7 +205,7 @@
           </div>
           <div class="how-photo">
             <aside class="quote-card">
-              <p>“I found a cdclean shared apartment near campus before the semester started. The price and photos
+              <p>“I found a verified student apartment near campus before the semester started. The price and photos
                 matched.”</p>
               <div class="quote-user"><span class="avatar">ZM</span>
                 <div><strong>Zainab M.</strong><span>300 Level student</span></div>
@@ -224,7 +221,7 @@
             <div>
               <p class="eyebrow">Student stories</p>
               <h2 class="heading">Real moves. Real relief.</h2>
-            </div><button class="text-link" data-nav="roommates">Meet roommates →</button>
+            </div><button class="text-link" data-nav="listings">Browse all apartments →</button>
           </div>
           <div class="cards">
             <article class="feature"><i>“</i>
@@ -236,7 +233,7 @@
               <h3>— Aisha, University student</h3>
             </article>
             <article class="feature"><i>“</i>
-              <p>“Finding a compatible roommate made a huge difference to my first semester.”</p>
+              <p>“Finding an apartment that fit my budget made a huge difference to my first semester.”</p>
               <h3>— Nneka, University student</h3>
             </article>
           </div>
@@ -292,7 +289,6 @@
                 <option value="">All types</option>
                 <option>Self contain</option>
                 <option>Room &amp; parlour</option>
-                <option>Shared room</option>
                 <option>Apartment</option>
                 <option>Studio</option>
                 <option>Duplex</option>
@@ -340,34 +336,38 @@
       <div class="page-head">
         <div class="container page-head-row">
           <div>
-            <p class="eyebrow">Campus life</p>
-            <h1 class="heading">Campus Guide</h1>
-            <p class="copy">Find your way around campus with ease. Explore important locations, get directions, and find a Dormer home nearby.</p>
+            <p class="eyebrow">Find a place to visit</p>
+            <h1 class="heading">Apartment Finder</h1>
+            <p class="copy">Search by apartment or neighborhood, compare your options, and open the listed area in Maps. Request a viewing from any home's details.</p>
           </div>
-          <button class="btn btn-light" data-nav="listings">Browse nearby homes</button>
+          <button class="btn btn-light" data-nav="listings">Browse all apartments</button>
         </div>
       </div>
       <div class="container campus-guide-layout">
         <aside class="campus-sidebar">
-          <label class="campus-search"><span aria-hidden="true">⌕</span><span class="sr">Search campus locations</span><input id="campusSearch" type="search" placeholder="Search locations" autocomplete="off" /></label>
-          <div class="campus-location-list" id="campusLocationList"></div>
+          <div class="campus-filter">
+            <h2>Find an apartment</h2>
+            <label class="campus-search"><span aria-hidden="true">⌕</span><span class="sr">Search apartments or areas</span><input id="campusSearch" type="search" placeholder="Apartment or neighborhood" autocomplete="off" /></label>
+            <label class="campus-field">Maximum yearly rent<select id="campusBudget">
+              <option value="999999">Any budget</option>
+              <option value="100000">Up to ₦100,000</option>
+              <option value="150000">Up to ₦150,000</option>
+              <option value="200000">Up to ₦200,000</option>
+              <option value="300000">Up to ₦300,000</option>
+              <option value="500000">Up to ₦500,000</option>
+            </select></label>
+            <label class="campus-field">Order by<select id="campusSort">
+              <option value="distance">Nearest campus</option>
+              <option value="price">Lowest rent</option>
+              <option value="rating">Top rated</option>
+            </select></label>
+            <button class="btn btn-soft" id="campusClear">Clear filters</button>
+          </div>
         </aside>
         <div class="campus-main">
-          <div class="campus-map-wrap">
-            <div id="campusMap" class="campus-map" aria-label="Interactive campus map"></div>
-            <div class="campus-map-note" id="campusMapNote">Map data © OpenStreetMap contributors</div>
-          </div>
-          <section class="campus-place-panel" id="campusPlacePanel" aria-live="polite"></section>
-          <section class="campus-nearby">
-            <div class="section-top">
-              <div>
-                <p class="eyebrow">Live with less commute</p>
-                <h2 class="heading">Nearby Dormer accommodation.</h2>
-              </div>
-              <button class="text-link" data-nav="listings">View all homes →</button>
-            </div>
-            <div class="cards campus-property-cards" id="campusPropertyCards"></div>
-          </section>
+          <div class="campus-results-head"><div><p class="eyebrow">Homes to check out</p><h2 class="heading" id="campusResultsTitle">Apartments near campus</h2></div><span id="campusResultsCount" aria-live="polite"></span></div>
+          <p class="campus-map-disclaimer">Area links open a Maps search using the location provided in each listing.</p>
+          <div class="cards campus-property-cards" id="campusPropertyCards"></div>
         </div>
       </div>
     </section>
@@ -395,10 +395,8 @@
             <!-- Section: Quick actions (dashboard) -->
             <section class="dashboard-section">
               <h2>Quick actions</h2>
-              <div class="quick-actions"><button class="action" data-nav="listings"><i>⌕</i><strong>Search
-                    apartments</strong><span>Explore verified listings</span></button><button class="action"
-                  data-nav="roommates"><i>♧</i><strong>Find a roommate</strong><span>See compatible
-                    students</span></button><button class="action" id="completeProfile"><i>◉</i><strong>Complete
+                <div class="quick-actions"><button class="action" data-nav="listings"><i>⌕</i><strong>Search
+                  apartments</strong><span>Explore verified listings</span></button><button class="action" id="completeProfile"><i>◉</i><strong>Complete
                     profile</strong><span>Improve your matches</span></button></div>
             </section>
             <!-- Section: Recommended for you (dashboard) -->
@@ -415,7 +413,7 @@
                     class="btn btn-soft" data-nav="listings">Repeat</button>
                 </div>
                 <div class="booking-row"><span class="avatar">⌖</span>
-                  <div><strong>University of Ibadan · shared home</strong><span>Last searched 2 days ago</span></div>
+                  <div><strong>Sango Estate · studio</strong><span>Last searched 2 days ago</span></div>
                   <button class="btn btn-soft" data-nav="listings">Repeat</button>
                 </div>
               </div>
@@ -512,21 +510,6 @@
       </div>
     </section>
 
-    <!-- Section: View 'roommates' (roommate matching) -->
-    <section class="view" data-view="roommates">
-      <div class="page-head">
-        <div class="container page-head-row">
-          <div>
-            <p class="eyebrow">Roommate matching</p>
-            <h1 class="heading">Find someone compatible.</h1>
-            <p class="copy">Compare habits, study schedules, budgets and preferred areas before you move in together.
-            </p>
-          </div><button class="btn btn-light" id="editPreferences">Edit my preferences</button>
-        </div>
-      </div>
-      <div class="container roommate-grid" id="roommateCards"></div>
-    </section>
-
     <!-- Section: View 'profile' (user profile) -->
     <section class="view" data-view="profile">
       <div class="container profile-layout">
@@ -554,12 +537,7 @@
                 <option>₦150k–₦200k</option>
               </select></label><label class="form-label">Preferred room<select>
                 <option>Self contain</option>
-                <option>Shared room</option>
                 <option>Room &amp; parlour</option>
-              </select></label><label class="form-label">Study schedule<select>
-                <option>Early mornings</option>
-                <option>Evenings</option>
-                <option>Flexible</option>
               </select></label>
             <div class="full"><button class="btn btn-primary" type="submit">Save changes</button></div>
           </form>
@@ -604,7 +582,7 @@
           room, or updating your profile. Verification information must be secured, access-controlled and retained only
           as needed.</p>
         <h2>How Dormer uses information</h2>
-        <p>Your profile and preferences help personalise listings and roommate suggestions. Landlord data is used for
+        <p>Your profile and preferences help personalise apartment listings. Landlord data is used for
           verification and to help students communicate about a specific property.</p>
         <h2>Safety and reporting</h2>
         <p>Users can report a listing, message or review. A production system must provide human review, audit trails
@@ -628,12 +606,11 @@
       <div class="footer-grid">
         <div><button class="brand" data-nav="apartment"><img class="brand-mark" src="Dormer Image/dormer-logo.svg"
           alt="" /><span>Dormer</span></button>
-          <p class="footer-copy">Verified student apartments, easier bookings and better shared living—wherever you study.
+          <p class="footer-copy">Verified student apartments and easier bookings—wherever you study.
           </p>
         </div>
         <div>
-          <h3>Explore</h3><button data-nav="listings">Find an apartment</button><button
-            data-nav="roommates">Roommates</button><button data-nav="student">Student dashboard</button>
+          <h3>Explore</h3><button data-nav="listings">Find an apartment</button><button data-nav="student">Student dashboard</button>
         </div>
         <div>
           <h3>For landlords</h3><button data-nav="landlord">Landlord dashboard</button><button
@@ -654,8 +631,8 @@
       <div class="modal-step active" data-auth-step="role">
         <h2>Welcome to Dormer</h2>
         <p>Choose how you want to continue.</p><button class="role"
-          data-auth-role="student"><i>🎓</i><span><strong>Continue as a student</strong><span>Search, save, book and
-              find roommates.</span></span></button><button class="role"
+            data-auth-role="student"><i>🎓</i><span><strong>Continue as a student</strong><span>Search, save and book
+              apartments.</span></span></button><button class="role"
           data-auth-role="landlord"><i>⌂</i><span><strong>Continue as a landlord</strong><span>List properties and
               manage bookings.</span></span></button>
       </div>
@@ -751,9 +728,6 @@
       <div class="notification"><i>⌂</i>
         <div><strong>New match near your campus</strong><span>Campus View Studio now fits your saved budget.</span>
         </div>
-      </div>
-      <div class="notification"><i>◌</i>
-        <div><strong>Roommate request</strong><span>Favour would like to connect about a shared home.</span></div>
       </div>
     </div>
   </div>

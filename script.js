@@ -21,8 +21,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/20.jpg",
+    image: "Dormer Image/20.jpg",
   },
   {
     id: 2,
@@ -37,28 +36,8 @@ const properties = [
     gender: "any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/14.jpg",
+    image: "Dormer Image/14.jpg",
     furnished: false,
-  },
-  {
-    id: 3,
-    title: " Shared Apartment",
-    area: "Tudun Wada · 6 mins from campus",
-    price: 65000,
-    type: "Shared room",
-    distance: 0.6,
-    rating: 4.7,
-    verified: true,
-    wifi: false,
-    gender: "Any",
-    beds: "Shared",
-    bath: " baths",
-    image:
-      "Dormer Image/15.jpg",
-    furnished: false,
-    parking: false,
-    gym: false,
   },
   {
     id: 4,
@@ -73,27 +52,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/17.jpg",
-    furnished: false,
-    parking: false,
-    gym: false,
-  },
-  {
-    id: 5,
-    title: " Shared Flat",
-    area: "Bauchi Road · 9 mins from campus",
-    price: 95000,
-    type: "Shared room",
-    distance: 0.9,
-    rating: 4.9,
-    verified: true,
-    wifi: false,
-    gender: "Female",
-    beds: "Shared",
-    bath: "1 baths",
-    image:
-      "Dormer Image/18.jpg",
+    image: "Dormer Image/17.jpg",
     furnished: false,
     parking: false,
     gym: false,
@@ -111,27 +70,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/10.jpg",
-    furnished: false,
-    parking: false,
-    gym: false,
-  },
-  {
-    id: 7,
-    title: "Shared Apartment",
-    area: "Mabushi Close · 10 mins from campus",
-    price: 120000,
-    type: "Shared Apartment",
-    distance: 1.1,
-    rating: 4.8,
-    verified: true,
-    wifi: false,
-    gender: "Any",
-    beds: "rooms",
-    bath: "baths",
-    image:
-      "Dormer Image/5.jpg",
+    image: "Dormer Image/10.jpg",
     furnished: false,
     parking: false,
     gym: false,
@@ -149,8 +88,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/7.jpg",
+    image: "Dormer Image/7.jpg",
     amenities: ["Wi-Fi", "Balcony", "Security"],
     furnished: true,
     parking: false,
@@ -167,10 +105,9 @@ const properties = [
     verified: true,
     wifi: true,
     gender: "Any",
-    beds: "1 rooms",
-    bath: "1 baths",
-    image:
-      "Dormer Image/21.jpg",
+    beds: "1 room",
+    bath: "1 bath",
+    image: "Dormer Image/21.jpg",
   },
   {
     id: 10,
@@ -185,8 +122,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Water", "Security", "Kitchen"],
     furnished: false,
     parking: false,
@@ -205,8 +141,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Gym", "Parking"],
     furnished: true,
     parking: true,
@@ -225,31 +160,10 @@ const properties = [
     gender: "Any",
     beds: "3 rooms",
     bath: "2 baths",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Balcony", "Parking"],
     furnished: false,
     parking: true,
-    gym: false,
-  },
-  {
-    id: 13,
-    title: "Shared Duplex Suite",
-    area: "Hostel Road · 3 mins from campus",
-    price: 110000,
-    type: "Shared room",
-    distance: 0.3,
-    rating: 4.6,
-    verified: true,
-    wifi: true,
-    gender: "Female",
-    beds: "Shared",
-    bath: "2 baths",
-    image:
-      "Dormer Image/default.jpg",
-    amenities: ["Wi-Fi", "Shared kitchen", "Security"],
-    furnished: true,
-    parking: false,
     gym: false,
   },
   {
@@ -265,8 +179,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Kitchen", "Water", "Security"],
     furnished: true,
     parking: false,
@@ -285,8 +198,7 @@ const properties = [
     gender: "Any",
     beds: "2 rooms",
     bath: "2 baths",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Pool", "Parking"],
     furnished: true,
     parking: true,
@@ -305,8 +217,7 @@ const properties = [
     gender: "Any",
     beds: "1 room",
     bath: "1 bath",
-    image:
-      "Dormer Image/default.jpg",
+    image: "Dormer Image/default.jpg",
     amenities: ["Wi-Fi", "Furnished", "Kitchen"],
     furnished: true,
     parking: false,
@@ -314,73 +225,6 @@ const properties = [
   },
 ];
 
-const campusGuideConfig = {
-  center: [10.3158, 9.8442],
-  zoom: 15,
-};
-
-const campusLocations = [
-  { id: "main-gate", name: "Main gate", category: "Access", description: "The primary entrance and first point of orientation for visitors.", coords: [10.3158, 9.8442] },
-  { id: "library", name: "University library", category: "Study", description: "A quiet place for research, group work and borrowing course materials.", coords: [10.3174, 9.8461] },
-  { id: "lecture-halls", name: "Central lecture halls", category: "Learning", description: "The main cluster of lecture theatres for large classes and examinations.", coords: [10.3165, 9.8481] },
-  { id: "faculties", name: "Faculty complex", category: "Learning", description: "Faculty offices, departmental rooms and student notice boards.", coords: [10.3148, 9.8475] },
-  { id: "medical-centre", name: "Medical centre", category: "Health", description: "Campus health support for consultations and urgent first aid.", coords: [10.3137, 9.8456] },
-  { id: "security-post", name: "Security post", category: "Safety", description: "Report an incident, ask for help or get after-hours directions.", coords: [10.3161, 9.8432] },
-  { id: "mosque", name: "Campus mosque", category: "Faith", description: "A campus worship space and community point.", coords: [10.3181, 9.8446] },
-  { id: "church", name: "Campus church", category: "Faith", description: "A campus worship space and student fellowship point.", coords: [10.3129, 9.8488] },
-  { id: "cafeteria", name: "Main cafeteria", category: "Food", description: "Affordable meals, snacks and a place to recharge between classes.", coords: [10.3151, 9.8500] },
-  { id: "admin", name: "Administrative offices", category: "Services", description: "Find registry, bursary and other central student services.", coords: [10.3139, 9.8512] },
-  { id: "atm", name: "ATM and financial services", category: "Services", description: "Convenient access to ATMs and everyday financial services.", coords: [10.3128, 9.8439] },
-];
-
-let campusMap;
-let campusMarkers = new Map();
-let selectedCampusLocation = campusLocations[0];
-const googleMapsApiKey = "AIzaSyCT7zscwKfNXDseOqYxrg8K90KLRg66f0Y";
-let googleCampusMap;
-let googleCampusMarkers = new Map();
-let googleMapsLoadPromise;
-
-// Sample Roommates Dataset
-const roommates = [
-  {
-    name: "Favour A.",
-    initials: "FA",
-    course: "Law · 300 Level",
-    match: 94,
-    traits: ["Early sleeper", "Clean", "Quiet study", "₦100k–₦200k"],
-  },
-  {
-    name: "Samuel O.",
-    initials: "SO",
-    course: "Engineering · 200 Level",
-    match: 90,
-    traits: ["Night reader", "Football", "Organised", "₦65k–₦150k"],
-  },
-  {
-    name: "Mariam K.",
-    initials: "MK",
-    course: "Medicine · 400 Level",
-    match: 88,
-    traits: ["Early mornings", "Clean", "No smoking", "Self contain"],
-  },
-  {
-    name: "Joseph E.",
-    initials: "JE",
-    course: "Computer Science · 300 Level",
-    match: 84,
-    traits: ["Flexible schedule", "Gaming", "Shared home", "₦100k–₦200k"],
-  },
-  {
-    name: "Zainab M.",
-    initials: "ZM",
-    course: "Economics · 200 Level",
-    match: 82,
-    traits: ["Quiet study", "Female roommate", "Cooking", "Campus Road"],
-  },
-];
-
-// Global Application State Variables
 let saved = new Set();
 let bookings = [];
 let searchType = "Rent";
@@ -388,16 +232,8 @@ let currentProperty = properties[0];
 let authRole = "student";
 let landlordAuthenticated = false;
 let toastTimer;
-
-// Currency Formatter Utility
 const money = (n) => "₦" + n.toLocaleString();
 
-
-// ==========================================
-// 2. UI HELPERS & MODAL MANAGEMENT
-// ==========================================
-
-// Display Toast Notifications
 function toast(message) {
   const el = $("#toast");
   el.textContent = message;
@@ -406,7 +242,6 @@ function toast(message) {
   toastTimer = setTimeout(() => el.classList.remove("show"), 3200);
 }
 
-// Modal Control Functions
 function openModal(id) {
   $("#" + id).classList.add("show");
   $("#" + id).setAttribute("aria-hidden", "false");
@@ -419,12 +254,6 @@ function closeModal(id) {
   document.body.classList.remove("modal-open");
 }
 
-
-// ==========================================
-// 3. PROPERTY RENDERING & FILTERING
-// ==========================================
-
-// Generate HTML for Property Card Component
 function card(p) {
   return `<article class="property-card">
     <div class="property-image">
@@ -438,86 +267,65 @@ function card(p) {
       <div class="price">${money(p.price)} <small>/ year</small></div>
       <h3>${p.title}</h3>
       <div class="place">⌖ ${p.area}</div>
-      <div class="meta">
-        <span>🛏 ${p.beds}</span>
-        <span>🛁 ${p.bath}</span>
-        <span class="rating">★ ${p.rating}</span>
-      </div>
+      <div class="meta"><span>🛏 ${p.beds}</span><span>🛁 ${p.bath}</span><span class="rating">★ ${p.rating}</span></div>
       <button class="text-link" data-detail="${p.id}" style="margin-top:12px">View details →</button>
     </div>
   </article>`;
 }
 
-// Bind Action Handlers for Property Cards
 function bindCards() {
-  $$("[data-save]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        const id = +b.dataset.save;
-        saved.has(id) ? saved.delete(id) : saved.add(id);
-        toast(
-          saved.has(id)
-            ? "Home saved to your favourites."
-            : "Home removed from favourites."
-        );
-        renderHome();
-        renderListings();
-      })
-  );
-  $$("[data-detail]").forEach(
-    (b) => (b.onclick = () => showDetail(+b.dataset.detail))
-  );
+  $$('[data-save]').forEach((button) => {
+    button.onclick = () => {
+      const id = Number(button.dataset.save);
+      saved.has(id) ? saved.delete(id) : saved.add(id);
+      toast(saved.has(id) ? "Home saved to your favourites." : "Home removed from favourites.");
+      renderHome();
+      renderListings();
+    };
+  });
+  $$('[data-detail]').forEach((button) => {
+    button.onclick = () => showDetail(Number(button.dataset.detail));
+  });
 }
 
-// Render Featured Properties on Home Screen
 function renderHome() {
   $("#homeCards").innerHTML = properties.slice(0, 3).map(card).join("");
   $("#recommendedCards").innerHTML = properties.slice(1, 4).map(card).join("");
   bindCards();
 }
 
-// Filter and Sort Properties
 function filteredProperties() {
   let list = [...properties];
-  let q = $("#filterUniversity")?.value.toLowerCase() || "";
-  let type = $("#filterType")?.value || "";
-  let amenity = $("#filterAmenity")?.value || "";
-  let price = +($("#filterPrice")?.value || 999999);
-
-  if (q) list = list.filter((p) => (p.area + p.title).toLowerCase().includes(q));
-  if (type) list = list.filter((p) => p.type === type);
-  if (amenity === "furnished") list = list.filter((p) => p.furnished);
-  if (amenity === "parking") list = list.filter((p) => p.parking);
-  if (amenity === "gym") list = list.filter((p) => p.gym);
-  if ($("#filterVerified")?.checked) list = list.filter((p) => p.verified);
-  if ($("#filterWifi")?.checked) list = list.filter((p) => p.wifi);
-  if ($("#filterFemale")?.checked) list = list.filter((p) => p.gender === "Female");
-
-  list = list.filter((p) => p.price <= price);
-
-  let sort = $("#sortListings")?.value;
+  const query = $("#filterUniversity")?.value.toLowerCase() || "";
+  const type = $("#filterType")?.value || "";
+  const amenity = $("#filterAmenity")?.value || "";
+  const price = Number($("#filterPrice")?.value || 999999);
+  if (query) list = list.filter((property) => (property.area + property.title).toLowerCase().includes(query));
+  if (type) list = list.filter((property) => property.type === type);
+  if (amenity === "furnished") list = list.filter((property) => property.furnished);
+  if (amenity === "parking") list = list.filter((property) => property.parking);
+  if (amenity === "gym") list = list.filter((property) => property.gym);
+  if ($("#filterVerified")?.checked) list = list.filter((property) => property.verified);
+  if ($("#filterWifi")?.checked) list = list.filter((property) => property.wifi);
+  if ($("#filterFemale")?.checked) list = list.filter((property) => property.gender === "Female");
+  list = list.filter((property) => property.price <= price);
+  const sort = $("#sortListings")?.value;
   if (sort === "low") list.sort((a, b) => a.price - b.price);
   if (sort === "distance") list.sort((a, b) => a.distance - b.distance);
-
   return list;
 }
 
-// Render Search & Filter Results Grid
 function renderListings() {
   const holder = $("#listingCards");
   if (!holder) return;
-
   const list = filteredProperties();
   holder.innerHTML = list.map(card).join("");
   holder.classList.toggle("hide", !list.length);
   $("#listingEmpty").classList.toggle("hide", !!list.length);
-  $("#resultsText").textContent = `${list.length} ${
-    list.length === 1 ? "home" : "homes"
-  } found`;
+  $("#resultsText").textContent = `${list.length} ${list.length === 1 ? "home" : "homes"} found`;
   bindCards();
 }
 
-// Simulate Loading Skeletons for Property Grid
 function loadListings() {
   $("#skeletons").classList.remove("hide");
   $("#listingCards").classList.add("hide");
@@ -529,11 +337,10 @@ function loadListings() {
   }, 650);
 }
 
-// ======= User helpers: read current user and update UI =======
 function getCurrentUser() {
   try {
-    return JSON.parse(localStorage.getItem('dormerUser') || 'null');
-  } catch (e) {
+    return JSON.parse(localStorage.getItem("dormerUser") || "null");
+  } catch (error) {
     return null;
   }
 }
@@ -544,154 +351,62 @@ function getFirstName(user) {
 }
 
 function updateGreeting() {
-  const el = $('#welcomeGreeting');
+  const el = $("#welcomeGreeting");
   if (!el) return;
-  const user = getCurrentUser();
-  const first = getFirstName(user);
-  el.textContent = first ? `Welcome back, ${first}.` : 'Welcome back.';
+  const first = getFirstName(getCurrentUser());
+  el.textContent = first ? `Welcome back, ${first}.` : "Welcome back.";
 }
 
 function updateProfileUI() {
   const user = getCurrentUser();
   if (!user) return;
-  const nameEl = $('#profileName');
-  const avatar = $('#profileAvatar');
-  const roleEl = $('#profileRole');
-  const firstInput = $('#profileFirstName');
-  const lastInput = $('#profileLastName');
+  const nameEl = $("#profileName");
+  const avatar = $("#profileAvatar");
+  const roleEl = $("#profileRole");
+  const firstInput = $("#profileFirstName");
+  const lastInput = $("#profileLastName");
   if (user.name && nameEl) nameEl.textContent = user.name;
   if (avatar && user.name) {
     const parts = String(user.name).trim().split(/\s+/);
-    const initials = (parts[0] || '').charAt(0) + ((parts[1] || '').charAt(0) || '');
-    avatar.textContent = initials.toUpperCase();
+    avatar.textContent = ((parts[0] || "").charAt(0) + ((parts[1] || "").charAt(0) || "")).toUpperCase();
   }
   if (roleEl && user.role) roleEl.textContent = `${user.role} · Profile`;
   if (firstInput && lastInput && user.name) {
     const parts = String(user.name).trim().split(/\s+/);
-    firstInput.value = parts[0] || '';
-    lastInput.value = parts.slice(1).join(' ') || '';
+    firstInput.value = parts[0] || "";
+    lastInput.value = parts.slice(1).join(" ") || "";
   }
-}
-
-function renderCampusLocations(query = "") {
-  const normalizedQuery = query.trim().toLowerCase();
-  const locations = campusLocations.filter((location) =>
-    `${location.name} ${location.category}`.toLowerCase().includes(normalizedQuery)
-  );
-
-  $("#campusLocationList").innerHTML = locations.length
-    ? locations.map((location) => `<button class="campus-location ${location.id === selectedCampusLocation.id ? "active" : ""}" data-campus-location="${location.id}">
-        <span class="campus-location-icon">⌖</span><span><strong>${location.name}</strong><small>${location.category}</small></span>
-      </button>`).join("")
-    : `<p class="campus-no-results">No campus locations found.</p>`;
-
-  $$('[data-campus-location]').forEach((button) => {
-    button.onclick = () => selectCampusLocation(button.dataset.campusLocation);
-  });
-}
-
-function renderCampusPlace(location) {
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${location.coords[0]}%2C${location.coords[1]}`;
-  $("#campusPlacePanel").innerHTML = `<div>
-    <p class="eyebrow">Selected location</p><h2>${location.name}</h2><p>${location.description}</p>
-  </div><div class="campus-place-actions"><span class="pill">${location.category}</span><a class="btn btn-soft" href="${directionsUrl}" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>`;
-}
-
-function renderNearbyProperties() {
-  const nearby = [...properties].sort((a, b) => a.distance - b.distance).slice(0, 3);
-  $("#campusPropertyCards").innerHTML = nearby.map(card).join("");
-  bindCards();
-}
-
-function selectCampusLocation(id) {
-  const location = campusLocations.find((item) => item.id === id);
-  if (!location) return;
-  selectedCampusLocation = location;
-  renderCampusLocations($("#campusSearch").value);
-  renderCampusPlace(location);
-  const marker = campusMarkers.get(location.id);
-  if (marker && campusMap) {
-    campusMap.setView(location.coords, 16);
-    marker.openPopup();
-  }
-  const googleMarker = googleCampusMarkers.get(location.id);
-  if (googleMarker && googleCampusMap) {
-    googleCampusMap.panTo({ lat: location.coords[0], lng: location.coords[1] });
-    googleCampusMap.setZoom(17);
-    googleMarker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(() => googleMarker.setAnimation(null), 700);
-  }
-  const previewMarker = $(`[data-preview-marker="${location.id}"]`);
-  if (previewMarker) {
-    $$("[data-preview-marker]").forEach((item) => item.classList.remove("active"));
-    previewMarker.classList.add("active");
-  }
-}
-
-function loadGoogleMaps() {
-  if (window.google?.maps) return Promise.resolve();
-  if (googleMapsLoadPromise) return googleMapsLoadPromise;
-
-  googleMapsLoadPromise = new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=geometry`;
-    script.async = true;
-    script.defer = true;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-  return googleMapsLoadPromise;
-}
-
-function renderGoogleCampusMap() {
-  const mapElement = $("#campusMap");
-  mapElement.innerHTML = "";
-  googleCampusMap = new google.maps.Map(mapElement, {
-    center: { lat: campusGuideConfig.center[0], lng: campusGuideConfig.center[1] },
-    zoom: campusGuideConfig.zoom,
-    mapTypeControl: false,
-    streetViewControl: true,
-    fullscreenControl: true,
-    mapTypeId: "roadmap",
-  });
-  googleCampusMarkers.clear();
-  campusLocations.forEach((location) => {
-    const marker = new google.maps.Marker({
-      position: { lat: location.coords[0], lng: location.coords[1] },
-      map: googleCampusMap,
-      title: location.name,
-      label: location.name === selectedCampusLocation.name ? "1" : undefined,
-    });
-    marker.addListener("click", () => selectCampusLocation(location.id));
-    googleCampusMarkers.set(location.id, marker);
-  });
-  $("#campusMapNote").textContent = "Google Maps · sample campus locations";
-}
-
-function renderCampusMapPreview() {
-  const positions = [
-    [18, 68], [38, 32], [61, 25], [49, 51], [29, 46], [10, 77],
-    [77, 66], [74, 19], [65, 73], [84, 36], [23, 20],
-  ];
-  $("#campusMap").innerHTML = `<div class="campus-preview-grid"><span class="campus-preview-label">Sample campus map</span><span class="campus-preview-road road-one"></span><span class="campus-preview-road road-two"></span><span class="campus-preview-road road-three"></span>${campusLocations.map((location, index) => `<button class="campus-preview-marker ${location.id === selectedCampusLocation.id ? "active" : ""}" data-preview-marker="${location.id}" style="left:${positions[index][0]}%;top:${positions[index][1]}%" title="${location.name}"><span>${index + 1}</span><strong>${location.name}</strong></button>`).join("")}<div class="campus-preview-compass">N</div></div>`;
-  $("#campusMapNote").textContent = "Campus map preview · sample locations";
-  $$('[data-preview-marker]').forEach((marker) => {
-    marker.onclick = () => selectCampusLocation(marker.dataset.previewMarker);
-  });
 }
 
 function renderCampusGuide() {
-  renderCampusLocations($("#campusSearch").value);
-  renderCampusPlace(selectedCampusLocation);
-  renderNearbyProperties();
-  if (googleCampusMap) return;
-  loadGoogleMaps()
-    .then(renderGoogleCampusMap)
-    .catch(() => {
-      renderCampusMapPreview();
-      $("#campusMapNote").textContent = "Map preview · Google Maps unavailable";
-    });
+  const query = $("#campusSearch").value.trim().toLowerCase();
+  const maxPrice = Number($("#campusBudget").value);
+  const sort = $("#campusSort").value;
+  let matches = properties.filter((property) =>
+    `${property.title} ${property.area} ${property.type}`.toLowerCase().includes(query) && property.price <= maxPrice
+  );
+  if (sort === "price") matches.sort((a, b) => a.price - b.price);
+  if (sort === "distance") matches.sort((a, b) => a.distance - b.distance);
+  if (sort === "rating") matches.sort((a, b) => b.rating - a.rating);
+  $("#campusResultsCount").textContent = `${matches.length} ${matches.length === 1 ? "apartment" : "apartments"}`;
+  $("#campusPropertyCards").innerHTML = matches.length
+    ? matches.map((property) => {
+      const area = property.area.split("·")[0].trim();
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(area)}`;
+      return `<article class="property-card"><div class="property-image"><img loading="lazy" src="${property.image}" alt="${property.title}" /><span class="badge">${property.verified ? "Verified" : "New listing"}</span></div><div class="card-body"><div class="price">${money(property.price)} <small>/ year</small></div><h3>${property.title}</h3><div class="place">⌖ ${property.area}</div><div class="meta"><span>${property.type}</span><span>${property.distance} km to campus</span><span class="rating">★ ${property.rating}</span></div><div class="campus-result-actions"><button class="text-link" data-guide-detail="${property.id}">View details / request viewing →</button><a class="text-link" href="${mapsUrl}" target="_blank" rel="noreferrer">Open area in Maps ↗</a></div></div></article>`;
+    }).join("")
+    : `<div class="empty campus-empty"><div><strong>No apartments match those filters.</strong><p>Try a different apartment name, neighborhood or budget.</p><button class="btn btn-soft" id="campusNoResultsClear">Clear filters</button></div></div>`;
+  $$('[data-guide-detail]').forEach((button) => {
+    button.onclick = () => showDetail(Number(button.dataset.guideDetail));
+  });
+  $("#campusNoResultsClear")?.addEventListener("click", clearCampusFilters);
+}
+
+function clearCampusFilters() {
+  $("#campusSearch").value = "";
+  $("#campusBudget").value = "999999";
+  $("#campusSort").value = "distance";
+  renderCampusGuide();
 }
 
 
@@ -714,7 +429,6 @@ let rawNav = function (view) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   if (view === "listings") loadListings();
-  if (view === "roommates") renderRoommates();
   if (view === "student") renderHome();
   if (view === "bookings") renderBookings();
   if (view === "campus-guide") renderCampusGuide();
@@ -770,7 +484,7 @@ function showDetail(id) {
         <section class="detail-block">
           <h3>House rules</h3>
           <ul class="rules">
-            <li>Respect shared spaces and quiet hours.</li>
+            <li>Respect the property and quiet hours.</li>
             <li>Confirm a viewing before paying a deposit.</li>
             <li>Smoking is not permitted inside the property.</li>
           </ul>
@@ -827,39 +541,8 @@ function showDetail(id) {
 
 
 // ==========================================
-// 5. ROOMMATE & BOOKING MANAGEMENT
+// 5. BOOKING MANAGEMENT
 // ==========================================
-
-// Render Roommate Search List
-function renderRoommates() {
-  $("#roommateCards").innerHTML = roommates
-    .map(
-      (r) => `<article class="roommate">
-        <div class="person-head">
-          <span class="person-avatar">${r.initials}</span>
-          <div>
-            <h3>${r.name}</h3>
-            <p>${r.course}</p>
-          </div>
-          <span class="match">${r.match}% match</span>
-        </div>
-        <div class="trait-list">
-          ${r.traits.map((t) => `<span class="trait">${t}</span>`).join("")}
-        </div>
-        <p style="color:var(--muted);font-size:.78rem">
-          Compatible on budget, cleanliness and preferred study environment.
-        </p>
-        <button class="btn btn-soft" data-connect="${r.name}">Connect about a room</button>
-      </article>`
-    )
-    .join("");
-
-  $$("[data-connect]").forEach(
-    (b) =>
-      (b.onclick = () =>
-        toast(`Connection request sent to ${b.dataset.connect} (demo).`))
-  );
-}
 
 // Open Booking Request Modal
 function openBooking(p) {
@@ -955,7 +638,7 @@ function renderLandlord(tab = "overview") {
               </td>
             </tr>
             <tr>
-              <td><strong>Shared Apartment</strong><span>Student Village</span></td>
+              <td><strong>Garden Studio</strong><span>Student Village</span></td>
               <td><b class="status">Live</b></td>
               <td>3 new</td>
               <td class="table-actions">
@@ -1000,7 +683,7 @@ function renderLandlord(tab = "overview") {
             </tr>
             <tr>
               <td><strong>Tosin B.</strong><span>University student</span></td>
-              <td>Shared Apartment</td>
+              <td>Garden Studio</td>
               <td><b class="status">Confirmed</b></td>
               <td class="table-actions"><button data-toast="Opening booking details (demo).">View</button></td>
             </tr>
@@ -1053,7 +736,7 @@ function profileTab(tab) {
     ],
     preferences: [
       "Housing preferences",
-      "Update budget, room type and study preferences to improve listings and roommate matches.",
+      "Update budget and room type preferences to improve apartment listings.",
     ],
     settings: [
       "Notifications & privacy",
@@ -1169,10 +852,8 @@ $("#heroSearch").onsubmit = (e) => {
 $$("[data-quick]").forEach(
   (b) =>
     (b.onclick = () => {
-      $("#heroUniversity").value =
-        b.dataset.quick === "Shared homes" ? "" : b.dataset.quick;
-      $("#heroType").value =
-        b.dataset.quick === "Shared homes" ? "Shared room" : "";
+      $("#heroUniversity").value = b.dataset.quick;
+      $("#heroType").value = "";
       toast("Search updated.");
     })
 );
@@ -1202,7 +883,10 @@ $("#clearFilters").onclick = $("#emptyReset").onclick = () => {
 
 $("#loadListings").onclick = loadListings;
 
-$("#campusSearch").oninput = (event) => renderCampusLocations(event.target.value);
+$("#campusSearch").oninput = renderCampusGuide;
+$("#campusBudget").onchange = renderCampusGuide;
+$("#campusSort").onchange = renderCampusGuide;
+$("#campusClear").onclick = clearCampusFilters;
 
 // FAQ Accordions
 $$(".faq-q").forEach(
@@ -1212,7 +896,6 @@ $$(".faq-q").forEach(
 // Profile Actions
 $("#completeProfile").onclick = () => nav("profile");
 $("#viewNotifications").onclick = $("#notificationsButton").onclick = () => openModal("notificationModal");
-$("#editPreferences").onclick = () => nav("profile");
 $$("[data-profile-tab]").forEach((b) => (b.onclick = () => profileTab(b.dataset.profileTab)));
 
 $("#profileForm").onsubmit = (e) => {

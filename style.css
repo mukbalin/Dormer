@@ -897,27 +897,34 @@
 
     .campus-guide-layout {
       display: grid;
-      grid-template-columns: 275px 1fr;
-      gap: 20px;
+      grid-template-columns: 270px 1fr;
+      align-items: start;
+      gap: 25px;
       padding: 32px 0 80px
     }
 
     .campus-sidebar {
-      align-self: start;
-      overflow: hidden;
+      position: sticky;
+      top: 18px;
+      padding: 18px;
       border: 1px solid var(--line);
-      border-radius: 13px;
+      border-radius: 10px;
       background: #fff
+    }
+
+    .campus-filter h2 {
+      margin: 0 0 12px;
+      font-size: 1rem
     }
 
     .campus-search {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 12px;
+      margin: 0 0 14px;
       padding: 0 10px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 7px;
       color: var(--green);
       background: #fff
     }
@@ -933,233 +940,59 @@
       font-size: .8rem
     }
 
-    .campus-location-list {
-      max-height: 560px;
-      overflow-y: auto;
-      border-top: 1px solid var(--line)
-    }
-
-    .campus-location {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      padding: 11px 12px;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      color: var(--ink);
-      background: #fff;
-      text-align: left
-    }
-
-    .campus-location:hover,
-    .campus-location.active {
-      color: var(--green);
-      background: var(--mint)
-    }
-
-    .campus-location-icon {
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      color: var(--green);
-      background: #f1f8f3
-    }
-
-    .campus-location strong,
-    .campus-location small {
-      display: block
-    }
-
-    .campus-location strong {
-      font-size: .78rem
-    }
-
-    .campus-location small {
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: .68rem
-    }
-
-    .campus-no-results {
-      margin: 0;
-      padding: 18px;
-      color: var(--muted);
-      font-size: .78rem
-    }
-
-    .campus-main {
-      min-width: 0
-    }
-
-    .campus-map-wrap {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: #e8f1eb;
-      box-shadow: var(--shadow)
-    }
-
-    .campus-map {
-      width: 100%;
-      height: 510px
-    }
-
-    .campus-preview-grid {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: #dce9df;
-      background-image: linear-gradient(24deg, transparent 48%, rgba(255, 255, 255, .88) 49%, rgba(255, 255, 255, .88) 52%, transparent 53%), linear-gradient(112deg, transparent 46%, rgba(255, 255, 255, .8) 47%, rgba(255, 255, 255, .8) 51%, transparent 52%), repeating-linear-gradient(0deg, rgba(79, 128, 93, .08) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, rgba(79, 128, 93, .08) 0 1px, transparent 1px 42px)
-    }
-
-    .campus-preview-grid:before {
-      position: absolute;
-      inset: 12% 24% 10% 17%;
-      border: 2px solid rgba(40, 116, 75, .18);
-      border-radius: 42% 18% 35% 24%;
-      background: rgba(166, 206, 169, .25);
-      content: ""
-    }
-
-    .campus-preview-label {
-      position: absolute;
-      top: 18px;
-      left: 20px;
-      padding: 7px 10px;
-      border-radius: 7px;
-      color: var(--deep);
-      background: rgba(255, 255, 255, .88);
-      font-size: .72rem;
-      font-weight: 700
-    }
-
-    .campus-preview-road {
-      position: absolute;
+    .campus-field {
       display: block;
-      height: 8px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, .85);
-      box-shadow: 0 0 0 1px rgba(83, 115, 91, .08)
+      margin: 13px 0;
+      color: var(--muted);
+      font-size: .75rem
     }
 
-    .road-one { top: 54%; right: -5%; left: -5%; transform: rotate(-11deg) }
-    .road-two { top: 5%; right: 39%; bottom: -6%; width: 8px; height: auto; transform: rotate(18deg) }
-    .road-three { top: 39%; right: 7%; width: 62%; transform: rotate(34deg) }
-
-    .campus-preview-marker {
-      position: absolute;
-      z-index: 2;
-      display: grid;
-      place-items: center;
-      width: 25px;
-      height: 25px;
-      padding: 0;
-      border: 3px solid #fff;
-      border-radius: 50% 50% 50% 0;
-      color: #fff;
-      background: var(--green);
-      box-shadow: 0 3px 8px rgba(12, 54, 35, .3);
-      transform: translate(-50%, -100%) rotate(-45deg)
-    }
-
-    .campus-preview-marker span { font-size: .65rem; font-weight: 700; transform: rotate(45deg) }
-
-    .campus-preview-marker strong {
-      position: absolute;
-      bottom: 29px;
-      left: 50%;
-      display: none;
-      width: max-content;
-      max-width: 145px;
-      padding: 5px 7px;
-      border-radius: 5px;
+    .campus-field select {
+      width: 100%;
+      margin-top: 6px;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
       color: var(--ink);
       background: #fff;
-      box-shadow: 0 4px 12px rgba(12, 54, 35, .15);
-      font-size: .65rem;
-      transform: translateX(-50%) rotate(45deg)
+      font-size: .78rem
     }
 
-    .campus-preview-marker:hover strong,
-    .campus-preview-marker.active strong { display: block }
-    .campus-preview-marker.active { background: var(--deep); transform: translate(-50%, -100%) rotate(-45deg) scale(1.15) }
+    .campus-filter > .btn { width: 100%; margin-top: 6px }
+    .campus-main { min-width: 0 }
 
-    .campus-preview-compass {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(21, 36, 28, .15);
-      border-radius: 50%;
-      color: var(--deep);
-      background: rgba(255, 255, 255, .88);
-      font-size: .7rem;
-      font-weight: 700
-    }
-
-    .campus-map-note {
-      position: absolute;
-      z-index: 400;
-      right: 8px;
-      bottom: 7px;
-      padding: 3px 6px;
-      color: #536259;
-      background: rgba(255, 255, 255, .86);
-      font-size: .62rem
-    }
-
-    .campus-place-panel {
+    .campus-results-head {
       display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 8px
+    }
+
+    .campus-results-head .eyebrow { margin-bottom: 5px }
+    .campus-results-head .heading { margin: 0; font-size: 1.55rem }
+    .campus-results-head > span { color: var(--muted); font-size: .8rem; white-space: nowrap }
+
+    .campus-map-disclaimer {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: .76rem
+    }
+
+    .campus-property-cards { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .campus-property-cards .property-card { min-width: 0 }
+
+    .campus-result-actions {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      margin-top: 14px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fff
+      gap: 8px 12px;
+      margin-top: 14px
     }
 
-    .campus-place-panel h2 {
-      margin: 0;
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.45rem
-    }
-
-    .campus-place-panel p:not(.eyebrow) {
-      max-width: 620px;
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: .8rem
-    }
-
-    .campus-place-actions {
-      display: flex;
-      flex: 0 0 auto;
-      align-items: center;
-      gap: 10px
-    }
-
-    .campus-nearby {
-      padding-top: 54px
-    }
-
-    .campus-nearby .section-top {
-      margin-bottom: 22px
-    }
-
-    .campus-property-cards .property-card {
-      min-width: 0
-    }
+    .campus-result-actions .text-link { font-size: .75rem; text-align: left }
+    .campus-empty { grid-column: 1 / -1 }
 
     /* Views */
     .listings-layout {
@@ -1822,7 +1655,7 @@
       background: var(--green)
     }
 
-    /* FAQ, Roommates, Profile and Legal */
+    /* FAQ, Profile and Legal */
     .faq-items {
       max-width: 780px;
       display: grid;
@@ -1868,79 +1701,6 @@
 
     .faq-item.open .faq-q span {
       transform: rotate(45deg)
-    }
-
-    .roommate-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-      padding: 34px 0 76px
-    }
-
-    .roommate {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: #fff
-    }
-
-    .person-head {
-      display: flex;
-      gap: 10px;
-      align-items: center
-    }
-
-    .person-avatar {
-      display: grid;
-      place-items: center;
-      width: 47px;
-      height: 47px;
-      border-radius: 50%;
-      color: var(--deep);
-      background: #d8eee1;
-      font-size: .9rem;
-      font-weight: 700
-    }
-
-    .person-head h3 {
-      margin: 0;
-      font-size: .92rem
-    }
-
-    .person-head p {
-      margin: 1px 0 0;
-      color: var(--muted);
-      font-size: .72rem
-    }
-
-    .match {
-      margin-left: auto;
-      padding: 5px 7px;
-      border-radius: 6px;
-      color: var(--green);
-      background: var(--mint);
-      font-size: .72rem;
-      font-weight: 700
-    }
-
-    .trait-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 16px 0
-    }
-
-    .trait {
-      padding: 4px 6px;
-      border-radius: 5px;
-      color: #54635a;
-      background: #f2f6f3;
-      font-size: .68rem
-    }
-
-    .roommate .btn {
-      width: 100%;
-      min-height: 38px
     }
 
     .profile-layout {
@@ -2486,13 +2246,7 @@
         gap: 40px
       }
 
-      .campus-guide-layout {
-        grid-template-columns: 220px 1fr
-      }
-
-      .campus-map {
-        height: 440px
-      }
+      .campus-guide-layout { grid-template-columns: 220px 1fr }
 
       .listings-layout {
         grid-template-columns: 205px 1fr
@@ -2503,10 +2257,6 @@
       }
 
       .metric-grid {
-        grid-template-columns: repeat(2, 1fr)
-      }
-
-      .roommate-grid {
         grid-template-columns: repeat(2, 1fr)
       }
 
@@ -2638,8 +2388,7 @@
         gap: 33px
       }
 
-      .campus-teaser-in,
-      .campus-place-panel {
+      .campus-teaser-in {
         display: block
       }
 
@@ -2647,35 +2396,10 @@
         margin-top: 22px
       }
 
-      .campus-guide-layout {
-        display: flex;
-        flex-direction: column;
-        padding-top: 23px
-      }
-
-      .campus-location-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        max-height: 255px
-      }
-
-      .campus-location {
-        min-width: 0;
-        border-right: 1px solid var(--line)
-      }
-
-      .campus-map {
-        height: 360px
-      }
-
-      .campus-place-actions {
-        justify-content: space-between;
-        margin-top: 14px
-      }
-
-      .campus-nearby {
-        padding-top: 42px
-      }
+      .campus-guide-layout { display: flex; flex-direction: column; padding-top: 23px }
+      .campus-sidebar { position: static; width: 100% }
+      .campus-property-cards { grid-template-columns: 1fr }
+      .campus-results-head { align-items: start }
 
       .how-photo {
         min-height: 295px
@@ -2736,11 +2460,6 @@
 
       .quick-actions {
         grid-template-columns: 1fr
-      }
-
-      .roommate-grid {
-        grid-template-columns: 1fr;
-        padding-top: 24px
       }
 
       .profile-layout {
